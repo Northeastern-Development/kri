@@ -1,0 +1,621 @@
+/*
+ * homepage
+ */
+
+
+ // Modules
+ @import "modules/variables";
+ @import "modules/mixins";
+ @import "modules/fonts";
+
+
+
+
+
+// @media (min-width: 1024px){
+
+  $columns: 3;
+
+
+  div.overlap{
+    background: rgba(0,0,0,1.0);
+    position: absolute;
+    margin: 0 0 0 (nth($wrapper-margins, 4) * -1);
+    z-index: -1;
+    width: $wrapper-width;
+    height: 100px;
+
+  }
+  main#homepage{
+
+    margin: ($header-height + $navigation-height + 20) 0 $gutter 0;
+
+    section.featured{
+      clear: right;
+      & > div.overlap{
+        bottom: 0;
+        height: 130px;
+      }
+      & > div.articles{
+        overflow: hidden;
+        height: auto;
+        & article{
+          background: rgba(255,255,255,1.0);
+          &:nth-of-type(1),
+          &:nth-of-type(3){
+            width: (($content-width - $gutter) / $columns) * 2;
+            float: left;
+            height: 480px;
+            margin: 0 $gutter $gutter 0;
+          }
+          &:nth-of-type(1){ // upper-left panel
+            height: 450px;
+            clear: both;
+            overflow: hidden;
+            & a{
+              width: 100%;
+              height: 100%;
+              display: table;
+              &:hover{
+                opacity: 0.9;
+              }
+            }
+            & div{
+              display: table-cell;
+              width: 50%;
+              vertical-align: middle;
+              &:nth-of-type(2){
+                padding: 0 20px 0 20px;
+                background: rgba(0,0,0,1.0);
+                color: rgba(255,255,255,1.0);
+                & > h1{
+                  font-family: "Tungsten Rounded A", "Tungsten Rounded B";
+                  font-weight: 700;
+                  font-size: 8rem;
+                  line-height: 7rem;
+                  letter-spacing: 2px;
+                  text-transform: uppercase;
+                  margin: 0 0 $gutter 0;
+                }
+                & > h2{
+                  font-size: 1.5rem;
+                  line-height: 2rem;
+                  letter-spacing: 1px;
+
+                }
+                & > h6{
+                  margin: 0 0 $gutter 0;
+                }
+              }
+            }
+          }
+          &:nth-of-type(3){ // lower-left panel
+            margin: 0 $gutter 0 0;
+            border: solid rgba(122, 119, 120, 1.0) 1px;
+            & a{
+              width: 100%;
+              height: 100%;
+              display: table;
+              &:hover{
+                opacity: 0.9;
+              }
+            }
+            & div{
+              display: table-row;
+              &:nth-of-type(1){
+                height: 350px;
+              }
+              &:nth-of-type(2){
+                .rubric{
+                  margin: 10px 0 0 20px;
+                }
+                & > h1{
+                  font-family: "Tungsten Rounded A", "Tungsten Rounded B";
+                  font-weight: 400;
+                  font-size: 4rem;
+                  line-height: 3.5rem;
+                  letter-spacing: 1px;
+                  margin: 0 0 5px 20px;
+                }
+                & > h6{
+                  margin: 0 20px 0 20px;
+                }
+              }
+            }
+          }
+          &:nth-of-type(2){ // tall right panel
+            flex-grow: 1;
+            float: right;
+            height: 700px;
+            width: (($content-width - $gutter) / $columns);
+            margin: 0 0 0 0;
+            background: nth($brand_colors, 4);
+            & a{
+              display: table;
+              width: 100%;
+              height: 100%;
+              &:hover{
+                color: inherit;
+                opacity: 0.9;
+
+              }
+            }
+            & div{
+              display: table-row;
+              &:nth-of-type(1){
+                height: 100px;
+                &.tall{
+                  height: 70px;
+                }
+              }
+              &:nth-of-type(2){
+                width: 100%;
+                height: 520px;
+                box-shadow: inset 0 0 0 2px nth($brand_colors, 4);
+                &.tall{
+                  height: 580px;
+                }
+              }
+              &:nth-of-type(1){
+                .rubric{
+                  margin: $gutter 20px 0 20px;
+                }
+                & > h1{
+                  font-size: 2.5rem;
+                  line-height: 3rem;
+                  letter-spacing: 1px;
+                  margin: 0 20px 5px 20px;
+                }
+                & > h6{
+                  margin: 0 20px 0 20px;
+                }
+              }
+            }
+
+          }
+          &:nth-of-type(4){ // lower-right panel
+            flex-grow: 1;
+            float: right;
+            height: 230px;
+            background: #efefef;
+            width: (($content-width - $gutter) / $columns);
+            margin: $gutter 0 0 0;
+            & div{
+              height: 100%;
+            }
+            .rubric{
+              margin: $gutter 0 0 20px;
+            }
+            & h1{
+              font-family: "Tungsten Rounded A", "Tungsten Rounded B";
+              font-weight: 700;
+              font-size: 4rem;
+              line-height: 4rem;
+              letter-spacing: 1px;
+              margin: 0 20px 5px 20px;
+            }
+          }
+        }
+      }
+    }
+
+
+    section.trending{
+      $columns: 4;
+      margin: 0 0 0 0;
+      width: $wrapper-width;
+      height: auto;
+      background: rgba(0,0,0,1.0);
+      text-align: center;
+      & > div{
+        padding: 50px 0 50px 0;
+        display: inline-block;
+        p.underlineheader{
+          text-transform: uppercase;
+          font-size: 2.3rem;
+          color: rgba(255,255,255,1.0);
+          width: auto;
+        }
+      }
+
+      & ul{
+        $width: ($content-width);
+        width: $width;
+        list-style: none;
+        list-style-type: none;
+        margin: 0 (($wrapper-width - ($content-width)) / 2) 0 (($wrapper-width - ($content-width)) / 2);
+        overflow: hidden;
+        & li{
+          float: left;
+          width: (($width - (($gutter * 2) * $columns - 2)) / $columns);
+          margin: 0 ($gutter * 2) 50px 0;
+          min-height: 400px;
+          max-height: 400px;
+          color: rgba(255,255,255,1.0);
+          &:hover{
+            & img{
+              opacity: 0.7;
+            }
+            & h6{
+              color: rgba(255,255,255,1.0);
+            }
+          }
+          & img{
+            border-radius: 50%;
+          }
+          &:last-child{
+            margin: 0 0 0 0;
+          }
+        }
+      }
+    }
+
+
+    section.recent{
+      & > div.articles{
+        width: $content-width;
+        & > div{
+          float: left;
+          width: (($content-width - ($gutter * ($columns - 1))) / $columns);
+          background: rgba(255,255,255,1.0);
+          margin: 0 $gutter $gutter 0;
+          &:last-child{
+            margin: 0 0 $gutter 0;
+          }
+          & a.seeall{
+            float: right;
+            display: table;
+            & .copy{
+              display: table-cell;
+              padding: 4px 0 0 10px;
+              font-size: 1.5rem;
+              & > span{
+                font-weight: 700;
+              }
+            }
+          }
+          & > div:not(.catheader){
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            margin: 0 0 $gutter 0;
+            &:hover{
+              & div.thumbnail{
+                opacity: 0.7;
+              }
+              & h6{
+                color: rgba(0,0,0,1.0);
+              }
+            }
+            & > div.thumbnail{
+              height: 200px;
+              overflow: hidden;
+
+              & > a{
+                display: block;
+                width: 100%;
+                height: 100%;
+                color: rgba(0,0,0,0.0);
+                font-size: 0px;
+              }
+            }
+          }
+          & > div.catheader{
+            background: rgba(255,255,255,1.0);
+            height: 100px;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 1px;
+            & > .underlineheader{
+              border-top: none;
+              border-right: none;
+              border-left: none;
+              width: auto;
+              position: absolute;
+              bottom: 0;
+              margin: 0 $gutter $gutter $gutter;
+              text-transform: uppercase;
+              font-size: 2.3rem;
+            }
+          }
+        }
+      }
+    }
+
+
+    section.storyidea{
+      margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
+    }
+  }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1300px){
+
+  main#homepage{
+
+
+
+    section.featured{
+      & > div.articles{
+        & article{
+          &:nth-of-type(1){ // upper-left panel
+            width: 100%;
+          }
+          &:nth-of-type(4){ // lower-right panel
+            height: 208px;
+            width: (($content-width - $gutter) / $columns) * 2;
+            margin: $gutter $gutter 0 0;
+          }
+        }
+      }
+    }
+
+
+
+    section.trending{
+      $columns: 2;
+      & ul{
+        $width: ($content-width);
+        width: $width;
+        & li{
+          width: (($width - (($gutter * 2) * $columns)) / $columns);
+        }
+      }
+    }
+
+
+
+
+
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 1250px){
+
+  main#homepage{
+
+    section.recent{
+      & > div.articles{
+        $width: $content-width;
+        width: $width;
+        & > div{
+          float: none;
+          width: 100%;
+          background: rgba(255,255,255,1.0);
+          margin: 0 0 $gutter 0;
+          overflow: hidden;
+          & a.seeall{
+            float: right;
+            display: table;
+          }
+          & div.post{
+            margin: 0 $gutter $gutter 0;
+            &:last-of-type{
+              margin: 0 0 $gutter 0;
+            }
+          }
+          & > div:not(.catheader){
+            float: left;
+            width: (($width - $gutter) / 2);
+          }
+          & > div.catheader{
+            clear: both;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+
+
+
+
+@media only screen and (max-width: 1080px){
+
+  main#homepage{
+    section.featured{
+      & > div.articles{
+        & article{
+          &:nth-of-type(1),
+          &:nth-of-type(2),
+          &:nth-of-type(3),
+          &:nth-of-type(4){ // all panels
+            float: none;
+            overflow: hidden;
+            width: 100%;
+            height: auto;
+            margin: ($gutter * 2) 0 0 0;
+          }
+          &:nth-of-type(1){
+            height: 400px;
+          }
+          &:nth-of-type(2){
+            height: 500px;
+            // & div:nth-of-type(1){
+            //   height: 150px;
+            // }
+            & div.tall:nth-of-type(2){
+              height: auto;
+              width: 100%;
+            }
+          }
+          &:nth-of-type(3){
+            & div:nth-of-type(1){
+              height: 300px;
+            }
+            & div:nth-of-type(2){
+              height: auto;
+              & > h6{
+                margin: 0 0 20px 20px;
+              }
+            }
+          }
+          &:nth-of-type(4){
+            height: auto;
+            & div{
+              height: auto;
+              & > h1{
+                margin: 0 20px 20px 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+
+@media only screen and (max-width: 760px){
+
+  main#homepage{
+
+    section.recent{
+      & > div.articles{
+        $width: $content-width;
+        width: $width;
+        & > div{
+          float: none;
+          width: 100%;
+          background: rgba(255,255,255,1.0);
+          margin: 0 0 $gutter 0;
+          overflow: hidden;
+          & a.seeall{
+            float: right;
+            display: table;
+          }
+          & div.post{
+            margin: 0 $gutter $gutter 0;
+            &:last-of-type{
+              margin: 0 0 $gutter 0;
+            }
+          }
+          & > div:not(.catheader){
+            float: left;
+            width: 100%;
+          }
+          & > div.catheader{
+            clear: both;
+          }
+        }
+      }
+    }
+
+  }
+
+
+
+
+
+  @media only screen and (max-width: 700px){
+
+    div.overlap{
+      margin: 0 0 0 (5vw * -1);
+
+    }
+
+    main#homepage{
+      margin: (100 + $navigation-height) 0 $gutter 0;
+      section.storyidea{
+        margin: 0 5vw 0 5vw;
+      }
+      section.recent{
+        & > div.articles{
+          width: 90vw;
+        }
+      }
+    }
+
+  }
+
+
+
+
+
+  @media only screen and (max-width: 600px){
+
+
+    main#homepage{
+      section.featured{
+        & > div.articles{
+          & article{
+            &:nth-of-type(1),
+            &:nth-of-type(2),
+            &:nth-of-type(3),
+            &:nth-of-type(4){ // all panels
+              height: auto;
+              margin: ($gutter * 3) 0 0 0;
+            }
+            &:nth-of-type(1){
+              & div{
+                width: 100%;
+                display: block;
+                &:nth-of-type(1){
+                  height: 250px;
+                }
+                &:nth-of-type(2){
+                  height: auto;
+                  padding: 20px 20px 20px 20px;
+                  & h1{
+                    font-size: 4rem;
+                    line-height: 4.5rem;
+                  }
+                }
+              }
+            }
+            &:nth-of-type(2){
+              & div:nth-of-type(1){
+                height: auto;
+                & > h6{
+                  margin: 0 20px 20px 20px;
+                }
+              }
+              & div:nth-of-type(2){
+                height: 350px;
+              }
+              & div.tall:nth-of-type(2){
+                height: 250px;
+              }
+            }
+          }
+        }
+      }
+
+
+
+      section.trending{
+        $columns: 1;
+        & ul{
+          $width: ($content-width);
+          width: $width;
+          & li{
+            width: (($width - (($gutter * 2) * $columns)) / $columns);
+          }
+        }
+      }
+    }
+  }
+}

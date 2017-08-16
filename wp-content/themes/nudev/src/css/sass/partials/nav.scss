@@ -1,0 +1,100 @@
+/**
+ * partials/nav
+ * ---
+ * Menus
+ */
+
+
+nav{
+  width: $wrapper-width;
+  height: auto;
+  overflow: auto;
+  background: rgba(0,0,0,1.0);
+  & > ul{
+    width: $content-width;
+    margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
+    list-style: none;
+    list-style-type: none;
+    clear: both;
+    & > li{
+      float: left;
+      &:last-child::after{
+        color: rgba(0,0,0,1.0);
+      }
+      & > a{
+        display: block;
+        color: rgba(255,255,255,1.0);
+        padding: 0 ($gutter * 2) 0 ($gutter * 2);
+        height: $navigation-height;
+        line-height: $navigation-height;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 1px;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+      &.active,
+      &:hover{
+        background: nth($brand_colors,4); // this uses the misc brand color in case one is not specified
+        & > a{
+          color: rgba(255,255,255,1.0);
+        }
+        &.people{
+          background: nth($brand_colors,1);
+        }
+        &.ideas{
+          background: nth($brand_colors,2);
+        }
+        &.news{
+          background: nth($brand_colors,3);
+        }
+        &.classnotes{
+          background: nth($brand_colors,4);
+        }
+        &.archives{
+          background: nth($brand_colors,4);
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 1080px){
+  nav{
+    & > ul{
+      display: flex;
+      flex-direction: row;
+      & > li{
+        float: none;
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 700px){
+
+  nav{
+    & > ul{
+      width: 90vw;
+      margin: 0 5vw 0 5vw;
+      // display: flex;
+      // flex-direction: row;
+      // & > li{
+      //   float: none;
+      //   flex-grow: 1;
+      // }
+    }
+  }
+
+}
