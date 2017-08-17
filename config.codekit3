@@ -24949,6 +24949,16 @@
 		"oF": 2,
 		"oS": 3
 		},
+	"\/wp-content\/themes\/nudev\/src\/css\/hover-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/hover-min-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/wp-content\/themes\/nudev\/src\/css\/magnific.css": {
 		"aP": 1,
 		"bl": 0,

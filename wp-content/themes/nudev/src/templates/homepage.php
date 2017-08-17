@@ -65,6 +65,9 @@
 					<p>
 						If you are interested in a focus area that is not listed, please let us know &mdash; we can create a customized partnership program specifically for your challenges.
 					</p>
+					<p>
+						<a href="#" title="Click here to contact us" class="button hvr-shutter-out-horizontal">Contact Us</a>
+					</p>
 				</li>
 				<li class="copy">
 					<h3>IoT Security</h3>

@@ -44,10 +44,12 @@ nav{
       }
       &.download{
         border: solid rgba(255,255,255,1.0) 1px;
+        background: rgba(0,0,0,1.0);
       }
       &.active,
       &:hover{
-        background: nth($brand_colors,4); // this uses the misc brand color in case one is not specified
+        color: rgba(255,255,255,1.0);
+        // background: nth($brand_colors,4); // this uses the misc brand color in case one is not specified
         // & > a{
         //   color: rgba(255,255,255,1.0);
         // }

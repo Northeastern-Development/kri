@@ -44,6 +44,7 @@
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
 
+		<!-- <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/hover-min.css"> -->
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/font-awesome.min.css">
 
 
