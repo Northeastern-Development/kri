@@ -36,6 +36,7 @@
           float: left;
           width: (($content-width - ($gutter * 2)) / $columns);
           background: rgba(255,255,255,1.0);
+          height: 300px;
           min-height: 300px;
           margin: 0 $gutter $gutter 0;
           &:nth-child(#{$columns}n+#{$columns}){
@@ -70,7 +71,7 @@
           &.dark{
             background: rgba(0,0,0,1.0);
             color: rgba(255,255,255,1.0);
-            padding: $gutter $gutter $gutter $gutter;
+            // padding: $gutter $gutter $gutter $gutter;
           }
         }
       }
@@ -125,7 +126,6 @@
           }
           &:nth-of-type(2){
             width: 52vw;
-            // min-height: 500px;
             margin: $gutter 0 0 18vw;
             border: solid #efefef 10px;
             padding: 50px 50px 50px 80px;
@@ -147,11 +147,19 @@
           &:nth-of-type(1){
             & > li{
               &:nth-child(3){
-                & > h2{
-                  padding: 0 120px 0 0;
-                  & i{
-                    font-style: normal;
-                    font-size: 2rem;
+                padding: 0 0 0 0;
+                & > a{
+                  display: block;
+                  padding: $gutter $gutter $gutter $gutter;
+                  width: 100%;
+                  height: inherit;
+                  background: rgba(0,0,0,1.0);
+                  & > h2{
+                    padding: 0 120px 0 0;
+                    & i{
+                      font-style: normal;
+                      font-size: 2rem;
+                    }
                   }
                 }
               }

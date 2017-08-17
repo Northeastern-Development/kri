@@ -49,7 +49,7 @@
 					</p>
 				</li>
 				<li class="copy dark">
-					<h2><a href="#" title="Click here to inquire about tailored solutions"><span>Inquire about tailored solutions</span></a> <i>&#xf105;&#xf105;</i></h2>
+					<a href="#" title="Click here to inquire about tailored solutions" class="hvr-shutter-out-horizontal"><h2><span>Inquire about tailored solutions</span> <i>&#xf105;&#xf105;</i></h2></a>
 				</li>
 				<li class="copy right">
 					<h3>Additive Manufacturing</h3>

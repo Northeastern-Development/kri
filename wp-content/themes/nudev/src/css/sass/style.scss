@@ -26,7 +26,7 @@ a{
   color: rgba(0,0,0,1.0);
   text-decoration: none;
   &:hover{
-    color: green;
+    color: yellow;
   }
   &.button{
     padding: 10px 30px 10px 30px;
@@ -43,7 +43,7 @@ a{
     text-decoration: underline;
     font-weight: lighter;
     &:hover{
-      color: green;
+      color: yellow;
       & > span{
         color: green;
       }
