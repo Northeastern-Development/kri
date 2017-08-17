@@ -6,20 +6,26 @@
 
 
 nav{
-  width: $wrapper-width;
+  width: auto;
   height: auto;
   overflow: auto;
-  background: rgba(0,0,0,1.0);
+  position: absolute;
+  right: nth($wrapper-margins, 2);
+  top: 0;
   & > ul{
-    width: $content-width;
-    margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
+    width: auto;
+    margin: (($header-height - $navigation-height) / 2) 0 (($header-height - $navigation-height) / 2) 0;
     list-style: none;
     list-style-type: none;
-    clear: both;
     & > li{
       float: left;
-      &:last-child::after{
-        color: rgba(0,0,0,1.0);
+      // &:last-child::after{
+      //   color: rgba(255,255,255,1.0);
+      // }
+      &:last-child{
+        & > a{
+          font-weight: bolder;
+        }
       }
       & > a{
         display: block;
@@ -27,6 +33,7 @@ nav{
         padding: 0 ($gutter * 2) 0 ($gutter * 2);
         height: $navigation-height;
         line-height: $navigation-height;
+        // font-weight: lighter;
         font-size: 1.3rem;
         text-transform: uppercase;
         text-align: center;
@@ -35,27 +42,30 @@ nav{
           text-decoration: none;
         }
       }
+      &.download{
+        border: solid rgba(255,255,255,1.0) 1px;
+      }
       &.active,
       &:hover{
         background: nth($brand_colors,4); // this uses the misc brand color in case one is not specified
-        & > a{
-          color: rgba(255,255,255,1.0);
-        }
-        &.people{
-          background: nth($brand_colors,1);
-        }
-        &.ideas{
-          background: nth($brand_colors,2);
-        }
-        &.news{
-          background: nth($brand_colors,3);
-        }
-        &.classnotes{
-          background: nth($brand_colors,4);
-        }
-        &.archives{
-          background: nth($brand_colors,4);
-        }
+        // & > a{
+        //   color: rgba(255,255,255,1.0);
+        // }
+        // &.people{
+        //   background: nth($brand_colors,1);
+        // }
+        // &.ideas{
+        //   background: nth($brand_colors,2);
+        // }
+        // &.news{
+        //   background: nth($brand_colors,3);
+        // }
+        // &.classnotes{
+        //   background: nth($brand_colors,4);
+        // }
+        // &.archives{
+        //   background: nth($brand_colors,4);
+        // }
       }
     }
   }

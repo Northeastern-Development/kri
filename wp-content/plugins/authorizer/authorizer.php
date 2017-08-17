@@ -3,7 +3,7 @@
 Plugin Name: Authorizer
 Plugin URI: https://github.com/uhm-coe/authorizer
 Description: Authorizer limits login attempts, restricts access to specified users, and authenticates against external sources (e.g., Google, LDAP, or CAS).
-Version: 2.6.17
+Version: 2.6.18
 Author: Paul Ryan
 Author URI: http://www.linkedin.com/in/paulrryan/
 Text Domain: authorizer
@@ -836,7 +836,7 @@ if ( ! class_exists( 'WP_Plugin_Authorizer' ) ) {
 							// Update user's role in this site's approved list and save.
 							foreach ( $auth_settings_access_users_approved_single as $key => $existing_user ) {
 								if ( $user->user_email == $existing_user['email'] ) {
-									$auth_settings_access_users_approved[$key]['role'] = $approved_role;
+									$auth_settings_access_users_approved_single[$key]['role'] = $approved_role;
 									break;
 								}
 							}
@@ -4957,6 +4957,15 @@ if ( ! class_exists( 'WP_Plugin_Authorizer' ) ) {
 								);
 								foreach ( $auth_multisite_settings_access_users_approved as $key => $existing_user ) {
 									if ( $approved_user['email'] == $existing_user['email'] ) {
+										// Remove role of the associated WordPress user from all blogs (but don't delete the user).
+										$user = get_user_by( 'email', $approved_user['email'] );
+										if ( $user !== false ) {
+											// Loop through all of the blogs this user is a member of and remove their capabilities.
+											foreach ( get_blogs_of_user( $user->ID ) as $blog ) {
+												remove_user_from_blog( $user->ID, $blog->userblog_id, '' );
+											}
+										}
+										// Remove entry from Approved Users list.
 										unset( $auth_multisite_settings_access_users_approved[$key] );
 										break;
 									}

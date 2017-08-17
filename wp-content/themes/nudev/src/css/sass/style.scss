@@ -22,6 +22,33 @@
 
 
 
+a{
+  color: rgba(0,0,0,1.0);
+  text-decoration: none;
+  &:hover{
+    color: green;
+  }
+}
+
+.dark{
+  & a{
+    color: red;
+    text-decoration: underline;
+    font-weight: lighter;
+    &:hover{
+      color: green;
+      & > span{
+        color: green;
+        // text-decoration: none;
+      }
+    }
+    & > span{
+      color: rgba(255,255,255,1.0);
+      text-decoration: none;
+    }
+  }
+}
+
 
 
 
@@ -30,17 +57,34 @@ h1{
 }
 
 h2{
-  font-size: 3rem;
+
+  font-size: 3.5rem;
+  line-height: 5rem;
+  font-weight: 200;
 }
 
 h3{
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.75rem;
+  line-height: 4rem;
+  font-weight: 200;
 }
 
 h4{
-  font-size: 2rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  margin: $gutter 0 $gutter 0;
+  letter-spacing: 1px;
+  &::before{
+    content: '';
+    display: inline-block;
+    width: 70px;
+    height: 10px;
+    background: rgba(255,0,0,1.0);
+    margin: 0 20px 0 0;
+  }
 }
+
+
 
 h5,
 .rubric{
@@ -60,6 +104,11 @@ h6{
   line-height: 2rem;
   font-weight: 400;
   letter-spacing: 1px;
+}
+
+p{
+  font-weight: normal;
+  margin: 0 0 $gutter 0;
 }
 
 
@@ -155,98 +204,98 @@ button[type=submit].formsubmitbutton{
 
 
 
-$i: 1;
-@each $cat in people, ideas, news, misc {
-  .category-#{$cat}{
-    & .underlineheader{
-      border-bottom: solid nth($brand_colors, $i) 10px;
-    }
-    & .rubric{
-      color: nth($brand_colors, $i);
-      text-transform: uppercase;
-      margin: 5px 0 0 0;
-      letter-spacing: 2px
-    }
-    & .chevron{
-      background: nth($brand_colors, $i);
-      border: solid nth($brand_colors, $i) 1px;
-      color: rgba(255,255,255,1.0);
-      padding: 0;
-      text-align: center;
-      vertical-align: middle;
-      overflow: hidden;
-      display: table-cell;
-      border-radius: 50%;
-      font-size: 4rem;
-      line-height: 3.25rem;
-      outline: 0;
-      &.invert{
-        background: rgba(255,255,255,1.0);
-        color: nth($brand_colors, $i);
-      }
-    }
-    & .catborders{
-      border-top: solid nth($brand_colors, $i) 7px;
-      border-bottom: solid nth($brand_colors, $i) 7px;
-    }
-    & div#wpfront-scroll-top-container{
-      background: nth($brand_colors, $i);
-    }
-
-    & a{
-      text-decoration: none;
-      &:hover{
-        text-decoration: none;
-        & h1{
-          color: nth($brand_colors, $i);
-        }
-        & span.chevron{
-          background: rgba(255,255,255,1.0);
-          border: solid nth($brand_colors, $i) 1px;
-          color: nth($brand_colors, $i);
-          &.invert{
-            background: nth($brand_colors, $i);
-            color: rgba(255,255,255,1.0);
-          }
-        }
-      }
-    }
-    .contentarea p a{
-      color: nth($brand_colors, $i);
-      text-decoration: underline;
-      &:hover{
-        text-decoration: none;
-      }
-    }
-    div.category-recentitem{
-      &:hover{
-        & a{
-          color: nth($brand_colors, $i);
-        }
-      }
-    }
-  }
-  li.category-#{$cat}{
-
-    & a{
-      color: rgba(255,255,255,1.0);
-    }
-    &:hover{
-      & a{
-        color: nth($brand_colors, $i);
-      }
-    }
-  }
-
-  $i: ($i + 1);
-}
+// $i: 1;
+// @each $cat in people, ideas, news, misc {
+//   .category-#{$cat}{
+//     & .underlineheader{
+//       border-bottom: solid nth($brand_colors, $i) 10px;
+//     }
+//     & .rubric{
+//       color: nth($brand_colors, $i);
+//       text-transform: uppercase;
+//       margin: 5px 0 0 0;
+//       letter-spacing: 2px
+//     }
+//     & .chevron{
+//       background: nth($brand_colors, $i);
+//       border: solid nth($brand_colors, $i) 1px;
+//       color: rgba(255,255,255,1.0);
+//       padding: 0;
+//       text-align: center;
+//       vertical-align: middle;
+//       overflow: hidden;
+//       display: table-cell;
+//       border-radius: 50%;
+//       font-size: 4rem;
+//       line-height: 3.25rem;
+//       outline: 0;
+//       &.invert{
+//         background: rgba(255,255,255,1.0);
+//         color: nth($brand_colors, $i);
+//       }
+//     }
+//     & .catborders{
+//       border-top: solid nth($brand_colors, $i) 7px;
+//       border-bottom: solid nth($brand_colors, $i) 7px;
+//     }
+//     & div#wpfront-scroll-top-container{
+//       background: nth($brand_colors, $i);
+//     }
+//
+//     & a{
+//       text-decoration: none;
+//       &:hover{
+//         text-decoration: none;
+//         & h1{
+//           color: nth($brand_colors, $i);
+//         }
+//         & span.chevron{
+//           background: rgba(255,255,255,1.0);
+//           border: solid nth($brand_colors, $i) 1px;
+//           color: nth($brand_colors, $i);
+//           &.invert{
+//             background: nth($brand_colors, $i);
+//             color: rgba(255,255,255,1.0);
+//           }
+//         }
+//       }
+//     }
+//     .contentarea p a{
+//       color: nth($brand_colors, $i);
+//       text-decoration: underline;
+//       &:hover{
+//         text-decoration: none;
+//       }
+//     }
+//     div.category-recentitem{
+//       &:hover{
+//         & a{
+//           color: nth($brand_colors, $i);
+//         }
+//       }
+//     }
+//   }
+//   li.category-#{$cat}{
+//
+//     & a{
+//       color: rgba(255,255,255,1.0);
+//     }
+//     &:hover{
+//       & a{
+//         color: nth($brand_colors, $i);
+//       }
+//     }
+//   }
+//
+//   $i: ($i + 1);
+// }
 
 
 
 
 /* Styles for the main content */
 main{
-  margin: ($header-height + $navigation-height) 0 $gutter 0;
+  margin: $header-height 0 $gutter 0;
   & > section{
     position: relative;
     margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
@@ -259,50 +308,50 @@ main{
 
 
 
-section.storyidea{
-  clear: both;
-  width: $content-width;
-  height: 100px;
-  line-height: 100px;
-  text-align: center;
-  text-transform: uppercase;
-  margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
-  border-top: solid rgba(0,0,0, 1.0) 7px;
-  padding-top: 10px;
-  & > a{
-    border: solid rgba(122, 119, 120, 1.0) 1px;
-    padding: 15px 30px 0 30px;
-    border-radius: 10px;
-    color: rgba(0,0,0, 1.0);
-    text-decoration: none;
-    & > span{
-      display: table-cell;
-      line-height: 3rem;
-      vertical-align: middle;
-      font-weight: 700;
-      color: rgba(0,0,0, 1.0);
-      &:nth-of-type(1){
-        color: rgba(187, 38, 26, 1.0);
-        font-size: 3rem;
-        line-height: 3rem;
-      }
-      &:nth-of-type(2){
-
-        padding: 0 0 0 10px;
-        line-height: 1rem;
-        color: rgba(0,0,0, 1.0);
-      }
-    }
-    &:hover{
-      background: rgba(187, 38, 26, 1.0);
-      border: solid rgba(187, 38, 26, 1.0) 1px;
-      color: rgba(255,255,255,1.0);
-      & > span{
-        color: rgba(255,255,255,1.0);
-      }
-    }
-  }
-}
+// section.storyidea{
+//   clear: both;
+//   width: $content-width;
+//   height: 100px;
+//   line-height: 100px;
+//   text-align: center;
+//   text-transform: uppercase;
+//   margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
+//   border-top: solid rgba(0,0,0, 1.0) 7px;
+//   padding-top: 10px;
+//   & > a{
+//     border: solid rgba(122, 119, 120, 1.0) 1px;
+//     padding: 15px 30px 0 30px;
+//     border-radius: 10px;
+//     color: rgba(0,0,0, 1.0);
+//     text-decoration: none;
+//     & > span{
+//       display: table-cell;
+//       line-height: 3rem;
+//       vertical-align: middle;
+//       font-weight: 700;
+//       color: rgba(0,0,0, 1.0);
+//       &:nth-of-type(1){
+//         color: rgba(187, 38, 26, 1.0);
+//         font-size: 3rem;
+//         line-height: 3rem;
+//       }
+//       &:nth-of-type(2){
+//
+//         padding: 0 0 0 10px;
+//         line-height: 1rem;
+//         color: rgba(0,0,0, 1.0);
+//       }
+//     }
+//     &:hover{
+//       background: rgba(187, 38, 26, 1.0);
+//       border: solid rgba(187, 38, 26, 1.0) 1px;
+//       color: rgba(255,255,255,1.0);
+//       & > span{
+//         color: rgba(255,255,255,1.0);
+//       }
+//     }
+//   }
+// }
 
 
 

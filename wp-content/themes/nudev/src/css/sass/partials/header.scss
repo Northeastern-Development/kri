@@ -9,9 +9,9 @@ header{
   width: $wrapper-width;
   position: fixed;
   top: 0;
-  background: rgba(255,255,255,1.0);
+  background: rgba(0,0,0,1.0);
   flex: none;
-  border-bottom: solid #fff 2px;
+  // border-bottom: solid #fff 2px;
   z-index: 1000;
   & > div#secondarynav{
     position: absolute;
@@ -47,18 +47,18 @@ header{
       }
     }
   }
-  div#searchnav{
-    position: absolute;
-    width: auto;
-    right: 0;
-    margin: 60px nth($wrapper-margins, 2) 0 0;
-  }
+  // div#searchnav{
+  //   position: absolute;
+  //   width: auto;
+  //   right: 0;
+  //   margin: 60px nth($wrapper-margins, 2) 0 0;
+  // }
   & > div#logo{
     width: $content-width;
     height: $header-height;
     overflow: hidden;
     margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
-    background: rgba(255,255,255,1.0);
+    // background: rgba(255,255,255,1.0);
     & > a{
       & img{
         height: 80px;

@@ -37,7 +37,7 @@
 		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri(); ?>/favicon/favicon-16x16.png">
 		<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/favicon/manifest.json">
 		<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7862092/6820572/css/fonts.css" />
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:200,300,400,700,900" rel="stylesheet">
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/favicon/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
@@ -61,17 +61,11 @@
 
 			<!-- header -->
 			<header role="banner">
-				<div id="secondarynav">
-					<?php wp_nav_menu( array( 'theme_location' => 'extra-menu' ) ); ?>
-				</div>
-				<div id="searchnav">
-					<?php get_search_form(); ?>
-				</div>
 
 				<!-- logo -->
 				<div id="logo">
-					<a href="<?=home_url()?>" title="Northeastern Magazine">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="northeastern magazine logo">
+					<a href="<?=home_url()?>" title="Kostas Research Institute">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/logo.jpg" alt="kostas research institute logo">
 					</a>
 				</div>
 				<!-- /logo -->
