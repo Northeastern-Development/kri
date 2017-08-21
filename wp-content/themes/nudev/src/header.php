@@ -65,7 +65,7 @@
 				<!-- logo -->
 				<div id="logo">
 					<a href="<?=home_url()?>" title="Kostas Research Institute">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/logo.jpg" alt="kostas research institute logo">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/logo.jpg" alt="kostas research institute logo">Kostas Research Institute
 					</a>
 				</div>
 				<!-- /logo -->

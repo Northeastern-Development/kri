@@ -13,40 +13,40 @@ header{
   flex: none;
   // border-bottom: solid #fff 2px;
   z-index: 1000;
-  & > div#secondarynav{
-    position: absolute;
-    width: auto;
-    right: 0;
-    margin: $gutter nth($wrapper-margins, 2) 0 0;
-
-    & > ul{
-      width: auto;
-      right: 0;
-      list-style: none;
-      list-style-type: none;
-      & > li{
-        &:nth-child(1){
-          display: none;
-        }
-        display: inline;
-        margin: 0 0 0 $gutter;
-        &.current-menu-item{
-          & > a{
-
-            text-decoration: underline;
-            color: rgba(217, 183, 77, 1.0);
-          }
-        }
-        & > a{
-          font-size: 1.5rem;
-          &:hover{
-            text-decoration: underline;
-            color: rgba(217, 183, 77, 1.0);
-          }
-        }
-      }
-    }
-  }
+  // & > div#secondarynav{
+  //   position: absolute;
+  //   width: auto;
+  //   right: 0;
+  //   margin: $gutter nth($wrapper-margins, 2) 0 0;
+  //
+  //   & > ul{
+  //     width: auto;
+  //     right: 0;
+  //     list-style: none;
+  //     list-style-type: none;
+  //     & > li{
+  //       &:nth-child(1){
+  //         display: none;
+  //       }
+  //       display: inline;
+  //       margin: 0 0 0 $gutter;
+  //       &.current-menu-item{
+  //         & > a{
+  //
+  //           text-decoration: underline;
+  //           color: rgba(217, 183, 77, 1.0);
+  //         }
+  //       }
+  //       & > a{
+  //         font-size: 1.5rem;
+  //         &:hover{
+  //           text-decoration: underline;
+  //           color: rgba(217, 183, 77, 1.0);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   // div#searchnav{
   //   position: absolute;
   //   width: auto;
@@ -64,6 +64,7 @@ header{
         height: 80px;
         margin: 20px 0 0 0;
       }
+      font-size: 0;
     }
   }
 }
