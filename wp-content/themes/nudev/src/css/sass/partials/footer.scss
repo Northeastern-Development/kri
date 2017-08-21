@@ -21,6 +21,40 @@
         display: flex;
         & > li{
           flex-grow: 1;
+          flex-basis: 0;
+          font-size: 1.3rem;
+          &:first-child{
+            overflow: hidden;
+            & img{
+              width: 200px;
+              height: auto;
+            }
+          }
+          & > a{
+            color: rgba(255,255,255,1.0);
+            font-size: 1.3rem;
+            &.download{
+              border: solid rgba(255,255,255,1.0) 1px;
+              background: rgba(0,0,0,1.0);
+              height: $navigation-height;
+              line-height: $navigation-height;
+              display: block;
+              color: rgba(255,255,255,1.0);
+              width: 180px;
+              text-transform: uppercase;
+              text-align: center;
+              letter-spacing: 1px;
+            }
+            &:not(.download):hover{
+              color: red;
+              text-decoration: underline;
+            }
+          }
+          &:not(.contact){
+            & > a{
+              text-transform: uppercase;
+            }
+          }
         }
       }
     }
@@ -118,69 +152,69 @@
 
 
 
-
- @media only screen and (max-width: 1300px){
-   footer{
-     height: 150px;
-     & > div{
-       & > div{
-         float: right;
-         width: 50%;
-       }
-     }
-   }
- }
-
-
-
-
-
- @media only screen and (max-width: 1080px){
-   footer{
-     height: auto;
-     & > div{
-       & > a{
-         & > img,
-         & > svg{
-          height: 40px;
-         }
-       }
-       & > div{
-         float: none;
-         width: 100%;
-       }
-     }
-   }
- }
-
-
-
-
-
- @media only screen and (max-width: 760px){
-   footer{
-     height: auto;
-     & > div{
-       & > a{
-         & > img,
-         & > svg{
-          height: 20px;
-         }
-       }
-     }
-   }
- }
-
-
-
-
-
- @media only screen and (max-width: 700px){
-   footer{
-     & > div{
-      width: 90vw;
-      margin: 0 5vw 0 5vw;
-      //
-     }
-   }
- }
+ //
+ // @media only screen and (max-width: 1300px){
+ //   footer{
+ //     height: 150px;
+ //     & > div{
+ //       & > div{
+ //         float: right;
+ //         width: 50%;
+ //       }
+ //     }
+ //   }
+ // }
+ //
+ //
+ //
+ //
+ //
+ // @media only screen and (max-width: 1080px){
+ //   footer{
+ //     height: auto;
+ //     & > div{
+ //       & > a{
+ //         & > img,
+ //         & > svg{
+ //          height: 40px;
+ //         }
+ //       }
+ //       & > div{
+ //         float: none;
+ //         width: 100%;
+ //       }
+ //     }
+ //   }
+ // }
+ //
+ //
+ //
+ //
+ //
+ // @media only screen and (max-width: 760px){
+ //   footer{
+ //     height: auto;
+ //     & > div{
+ //       & > a{
+ //         & > img,
+ //         & > svg{
+ //          height: 20px;
+ //         }
+ //       }
+ //     }
+ //   }
+ // }
+ //
+ //
+ //
+ //
+ //
+ // @media only screen and (max-width: 700px){
+ //   footer{
+ //     & > div{
+ //      width: 90vw;
+ //      margin: 0 5vw 0 5vw;
+ //      //
+ //     }
+ //   }
+ // }

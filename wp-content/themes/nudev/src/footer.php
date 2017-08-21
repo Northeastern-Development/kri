@@ -5,19 +5,23 @@
 				<div id="sitefooter">
 					<div>
 						<ul>
-							<li>logo</li>
 							<li>
-								141 Bedford Street<br />
-								Burlington, MA 01803<br />
-								Phone: 781.238.8440<br />
-								Email: KostasInstitute@kri.neu.edu<br />
+								<a href="<?=home_url()?>" title="Kostas Research Institute">
+									<img src="<?php echo get_template_directory_uri(); ?>/img/logo.jpg" alt="kostas research institute logo">
+								</a>
+							</li>
+							<li class="contact">
+								<a href="https://www.google.com/maps/place/141+S+Bedford+St,+Burlington,+MA+01803/@42.4784947,-71.1932998,976m/data=!3m2!1e3!4b1!4m5!3m4!1s0x89e37586368b9e69:0xf0d4656ecd8fb646!8m2!3d42.4784908!4d-71.1911058" title="Click here to view a map of this location" target="_blank">141 South Bedford Street<br />
+								Burlington, MA 01803</a><br />
+								Phone: <a href="tel:7812388440" title="Click here to give us a call"><span>781.238.8440</span></a><br />
+								Email: <a href="mailto:kostasinstitute@kri.neu.edu" title="Click here to send us an email"><span>KostasInstitute@kri.neu.edu</span></a><br />
 							</li>
 							<li>
-								Affiliated Faculty<br />
-								Events<br />
-								Location<br />
+								<a href="<?=home_url()?>/affiliated-faculty" title="Click here to view affiliated faculty"><span>Affiliated Faculty</span></a><br />
+								<a href="<?=home_url()?>/events" title="Click here to view events"><span>Events</span></a><br />
+								<a href="<?=home_url()?>/location" title="Click here to learn more about the location"><span>Location</span></a><br />
 							</li>
-							<li>download</li>
+							<li><a href="wp-content/uploads/kostas-research-institute.pdf" title="Click here to download our brochure" class="download hvr-shutter-out-horizontal" target="_blank">&#xf019; Brochure</a></li>
 						</ul>
 					</div>
 				</div>
