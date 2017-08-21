@@ -19,38 +19,25 @@
   text-decoration: none;
 }
 
-// html,
-// body{
-//   height: 100%;
-// }
-
 html {
   // `font-size` for REM use
   font-size: 62.5%;
   // Cancel hightlight color when tapping in iOS
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   overflow-x: hidden;
-  // overflow-y: scroll;
   height: 100%;
 }
 
 body {
-  // font-family: $font-family-base;
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
   font-weight: 400;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-  // color: $text-color;
-  // background-color: $body-bg;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   min-height: 100%;
   display: flex;
   flex-direction: column;
-
-  // background :red;
 }
 
 img {
