@@ -1,4 +1,8 @@
+/* global wpforms_settings,grecaptcha,wpforms_validate,wpforms_timepicker */
+
 ;(function($) {
+
+	'use strict';
 
 	var WPForms = {
 
@@ -8,9 +12,6 @@
 		 * @since 1.2.3
 		 */
 		init: function() {
-
-			// Set user identifier
-			WPForms.setUserIndentifier();
 
 			// Document ready
 			$(document).ready(WPForms.ready);
@@ -28,11 +29,19 @@
 		 */
 		ready: function() {
 
+			// Set user identifier
+			WPForms.setUserIndentifier();
+
 			WPForms.loadValidation();
 			WPForms.loadDatePicker();
 			WPForms.loadTimePicker();
 			WPForms.loadInputMask();
 			WPForms.loadPayments();
+
+			// Randomize elements.
+			$( '.wpforms-randomize' ).each( function() {
+				$( this ).randomize();
+			});
 
 			$(document).trigger('wpformsReady');
 		},
@@ -59,6 +68,16 @@
 
 			// Only load if jQuery validation library exists
 			if (typeof $.fn.validate !== 'undefined') {
+
+				// jQuery Validation library will not correctly validate
+				// fields that do not have a name attribute, so we use the
+				// `wpforms-input-temp-name` class to add a temporary name
+				// attribute before validation is initialized, then remove it
+				// before the form submits.
+				$( '.wpforms-input-temp-name' ).each(function( index, el ) {
+					var random = Math.floor( Math.random() * 9999 ) + 1;
+					$( this ).attr( 'name', 'wpf-temp-' + random );
+				});
 
 				$.validator.messages.required = wpforms_settings.val_required;
 				$.validator.messages.url = wpforms_settings.val_url;
@@ -105,7 +124,7 @@
 				// Validate email addresses
 				$.validator.methods.email = function( value, element ) {
 					return this.optional( element ) || /^[a-z0-9.!#$%&'*+\/=?^_`{|}~-]+@((?=[a-z0-9-]{1,63}\.)(xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,63}$/i.test( value );
-				}
+				};
 
 				// Validate confirmations
 				$.validator.addMethod("confirm", function(value, element, param) {
@@ -130,34 +149,60 @@
 				// Finally load jQuery Validation library for our forms
 				$('.wpforms-validate').each(function() {
 					var form   = $(this),
-						formID = form.data('formid');
+						formID = form.data('formid'),
+						properties;
 
-					if (typeof window['wpforms_'+formID] != "undefined" && window['wpforms_'+formID].hasOwnProperty('validate')) {
+					// TODO: cleanup this BC with wpforms_validate.
+					if (typeof window['wpforms_'+formID] !== 'undefined' && window['wpforms_'+formID].hasOwnProperty('validate')) {
 						properties = window['wpforms_'+formID].validate;
-					} else if ( typeof wpforms_validate != "undefined") {
+					} else if ( typeof wpforms_validate !== 'undefined') {
 						properties = wpforms_validate;
 					} else {
 						properties = {
 							errorClass: 'wpforms-error',
 							validClass: 'wpforms-valid',
-							errorPlacement: function(error, element) {
-								if (element.attr('type') == 'radio' || element.attr('type') == 'checkbox' ) {
-									element.parent().parent().parent().append(error);
-								} else if (element.is('select') && element.attr('class').match(/date-month|date-day|date-year/)) {
-									if (element.parent().find('label.wpforms-error:visible').length === 0) {
-										element.parent().find('select:last').after(error);
+							errorPlacement: function( error, element ) {
+								if ( element.attr( 'type' ) === 'radio' || element.attr( 'type' ) === 'checkbox' ) {
+									if ( element.hasClass( 'wpforms-likert-scale-option' ) ) {
+										if ( element.closest( 'table' ).hasClass( 'single-row' ) ) {
+											element.closest( 'table' ).after( error );
+										} else {
+											element.closest( 'tr' ).find( 'th' ).append( error );
+										}
+									} else if ( element.hasClass( 'wpforms-net-promoter-score-option' ) ) {
+										element.closest( 'table' ).after( error );
+									} else {
+										element.parent().parent().parent().append( error );
+									}
+								} else if ( element.is( 'select' ) && element.attr( 'class' ).match( /date-month|date-day|date-year/ ) ) {
+									if ( element.parent().find( 'label.wpforms-error:visible' ).length === 0 ) {
+										element.parent().find( 'select:last' ).after( error );
 									}
 								} else {
 									error.insertAfter(element);
 								}
 							},
-							highlight: function(element, errorClass, validClass) {
-								$(element).addClass(errorClass).removeClass(validClass);
-								$(element).closest('.wpforms-field').addClass('wpforms-has-error');
+							highlight: function( element, errorClass, validClass ) {
+								var $element  = $( element ),
+									$field    = $element.closest( '.wpforms-field' ),
+									inputName = $element.attr( 'name' );
+								if ( $element.attr( 'type' ) === 'radio' || $element.attr( 'type' ) === 'checkbox' ) {
+									$field.find( 'input[name=\''+inputName+'\']' ).addClass( errorClass ).removeClass( validClass );
+								} else {
+									$element.addClass( errorClass ).removeClass( validClass );
+								}
+								$field.addClass( 'wpforms-has-error' );
 							},
-							unhighlight: function(element, errorClass, validClass) {
-								$(element).removeClass(errorClass).addClass(validClass);
-								$(element).closest('.wpforms-field').removeClass('wpforms-has-error');
+							unhighlight: function( element, errorClass, validClass ) {
+								var $element  = $( element ),
+									$field    = $element.closest( '.wpforms-field' ),
+									inputName = $element.attr( 'name' );
+								if ( $element.attr( 'type' ) === 'radio' || $element.attr( 'type' ) === 'checkbox' ) {
+									$field.find( 'input[name=\''+inputName+'\']' ).addClass( validClass ).removeClass( errorClass );
+								} else {
+									$element.addClass( validClass ).removeClass( errorClass );
+								}
+								$field.removeClass( 'wpforms-has-error' );
 							},
 							submitHandler: function(form) {
 
@@ -170,7 +215,12 @@
 									if (altText) {
 										$submit.text(altText).prop('disabled', true);
 									}
+
+									// Remove name attributes if needed.
+									$( '.wpforms-input-temp-name' ).removeAttr('name');
+
 									form.submit();
+
 								} else {
 									// Form contains invisible reCAPTCHA.
 									grecaptcha.execute( $submit.get(0).recaptchaID );
@@ -196,13 +246,14 @@
 					var element = $(this),
 						form    = element.closest('.wpforms-form'),
 						formID  = form.data('formid'),
-						fieldID = element.closest('.wpforms-field').data('field-id');
+						fieldID = element.closest('.wpforms-field').data('field-id'),
+						properties;
 
-					if (typeof window['wpforms_'+formID+'_'+fieldID] != 'undefined' && window['wpforms_'+formID+'_'+fieldID].hasOwnProperty('datepicker')) {
+					if (typeof window['wpforms_'+formID+'_'+fieldID] !== 'undefined' && window['wpforms_'+formID+'_'+fieldID].hasOwnProperty('datepicker')) {
 						properties = window['wpforms_'+formID+'_'+fieldID].datepicker;
-					} else if (typeof window['wpforms_'+formID] != 'undefined' && window['wpforms_'+formID].hasOwnProperty('datepicker')) {
+					} else if (typeof window['wpforms_'+formID] !== 'undefined' && window['wpforms_'+formID].hasOwnProperty('datepicker')) {
 						properties = window['wpforms_'+formID].datepicker;
-					} else if (typeof wpforms_datepicker != 'undefined') {
+					} else if (typeof wpforms_datepicker !== 'undefined') {
 						properties = wpforms_datepicker;
 					} else {
 						properties = {
@@ -211,7 +262,7 @@
 					}
 					element.flatpickr(properties)
 				});
-			};
+			}
 		},
 
 		/**
@@ -227,20 +278,28 @@
 					var element = $(this),
 						form    = element.closest('.wpforms-form'),
 						formID  = form.data('formid'),
-						fieldID = element.closest('.wpforms-field').data('field-id');
+						fieldID = element.closest('.wpforms-field').data('field-id'),
+						properties;
 
-					if (typeof window['wpforms_'+formID+'_'+fieldID] != 'undefined' && window['wpforms_'+formID+'_'+fieldID].hasOwnProperty('timepicker')) {
+					if (
+						typeof window['wpforms_'+formID+'_'+fieldID] !== 'undefined' &&
+						window['wpforms_'+formID+'_'+fieldID].hasOwnProperty('timepicker')
+					) {
 						properties = window['wpforms_'+formID+'_'+fieldID].timepicker;
-					} else if (typeof window['wpforms_'+formID] != "undefined" && window['wpforms_'+formID].hasOwnProperty('timepicker') ) {
+					} else if (
+						typeof window['wpforms_'+formID] !== 'undefined' &&
+						window['wpforms_'+formID].hasOwnProperty('timepicker')
+					) {
 						properties = window['wpforms_'+formID].timepicker;
-					} else if ( typeof wpforms_timepicker != "undefined") {
+					} else if ( typeof wpforms_timepicker !== 'undefined') {
 						properties = wpforms_timepicker;
 					} else {
 						properties = {
 							scrollDefault: 'now',
 							forceRoundTime: true
-						}
+						};
 					}
+
 					element.timepicker(properties);
 				});
 			}
@@ -256,7 +315,7 @@
 			// Only load if jQuery input mask library exists
 			if (typeof $.fn.inputmask !== 'undefined') {
 				$('.wpforms-masked-input').inputmask();
-			};
+			}
 		},
 
 		/**
@@ -269,13 +328,13 @@
 			// Update Total field(s) with latest calculation
 			$('.wpforms-payment-total').each(function(index, el) {
 				WPForms.amountTotal(this);
-			})
+			});
 
-			// Credit card valdation
+			// Credit card validation
 			if(typeof $.fn.payment !== 'undefined') {
 				$('.wpforms-field-credit-card-cardnumber').payment('formatCardNumber');
 				$('.wpforms-field-credit-card-cardcvc').payment('formatCardCVC');
-			};
+			}
 		},
 
 		//--------------------------------------------------------------------//
@@ -296,19 +355,19 @@
 			});
 
 			// Payments: Update Total field(s) when latest calculation.
-			$(document).on('change input', '.wpforms-payment-price', function(event) {
+			$(document).on('change input', '.wpforms-payment-price', function() {
 				WPForms.amountTotal(this, true);
 			});
 
 			// Payments: Restrict user input payment fields
-			$(document).on('input', '.wpforms-payment-user-input', function(event) {
+			$(document).on('input', '.wpforms-payment-user-input', function() {
 				var $this = $(this),
 					amount = $this.val();
 				$this.val(amount.replace(/[^0-9.,]/g, ''));
 			});
 
 			// Payments: Sanitize/format user input amounts
-			$(document).on('focusout', '.wpforms-payment-user-input', function(event) {
+			$(document).on('focusout', '.wpforms-payment-user-input', function() {
 				var $this     = $(this),
 					amount    = $this.val(),
 					sanitized = WPForms.amountSanitize(amount),
@@ -316,9 +375,45 @@
 				$this.val(formatted);
 			});
 
+			// Rating field: hover effect.
+			$( '.wpforms-field-rating-item' ).hover(
+				function() {
+					$( this ).parent().find( '.wpforms-field-rating-item' ).removeClass( 'selected hover' );
+					$( this ).prevAll().andSelf().addClass( 'hover' );
+				},
+				function() {
+					$( this ).parent().find( '.wpforms-field-rating-item' ).removeClass( 'selected hover' );
+					$( this ).parent().find( 'input:checked' ).parent().prevAll().andSelf().addClass( 'selected' );
+				}
+			);
+
+			// Rating field: toggle selected state.
+			$( document ).on( 'change', '.wpforms-field-rating-item input', function() {
+
+				var $this  = $( this ),
+					$wrap  = $this.closest( '.wpforms-field-rating-items' ),
+					$items = $wrap.find( '.wpforms-field-rating-item' );
+
+				$items.removeClass( 'hover selected' );
+				$this.parent().prevAll().andSelf().addClass( 'selected' );
+			});
+
+			// Checkbox/Radio/Payment checkbox: toggle selected state class.
+			$( document ).on( 'change', '.wpforms-field-checkbox input, .wpforms-field-radio input, .wpforms-field-payment-multiple input', function() {
+
+				var $this = $( this );
+
+				if ( 'radio' === $this.attr( 'type' ) ) {
+					$( this ).closest( 'ul' ).find( 'li' ).removeClass( 'wpforms-selected' );
+					$( this ).closest( 'li' ).addClass( 'wpforms-selected' );
+				} else {
+					$( this ).closest( 'li' ).toggleClass( 'wpforms-selected' );
+				}
+			})
+
 			// OptinMonster: initialize again after OM is finished.
-			// This is to accomodate moving the form in the DOM.
-			$(document).on('OptinMonsterAfterInject', function(event) {
+			// This is to accommodate moving the form in the DOM.
+			$(document).on('OptinMonsterAfterInject', function() {
 				WPForms.ready();
 			});
 		},
@@ -334,7 +429,7 @@
 				valid      = true,
 				action     = $this.data('action'),
 				page       = $this.data('page'),
-				page2      = page;
+				page2      = page,
 				next       = page+1,
 				prev       = page-1,
 				formID     = $this.data('formid'),
@@ -346,6 +441,7 @@
 				pageScroll = false;
 
 			// Page scroll
+			// TODO: cleanup this BC with wpform_pageScroll.
 			if ( window.wpforms_pageScroll === false ) {
 				pageScroll = false;
 			} else if ( !WPForms.empty( window.wpform_pageScroll ) ) {
@@ -355,7 +451,7 @@
 			}
 
 			// Toggling between pages
-			if ( action == 'next' ){
+			if ( action === 'next' ){
 				// Validate
 				if (typeof $.fn.validate !== 'undefined') {
 					$page.find('input.wpforms-field-required, select.wpforms-field-required, textarea.wpforms-field-required, .wpforms-field-required input').each(function(index, el) {
@@ -393,7 +489,7 @@
 					}
 					$this.trigger('wpformsPageChange', [ page2, $form ] );
 				}
-			} else if ( action == 'prev' ) {
+			} else if ( action === 'prev' ) {
 				// Move to prev page
 				page2 = prev;
 				$page.hide();
@@ -417,14 +513,14 @@
 					$indicator.find('.wpforms-page-indicator-page-'+page2).addClass('active');
 					$indicator.find('.wpforms-page-indicator-page-number').removeAttr('style');
 					$indicator.find('.active .wpforms-page-indicator-page-number').css('background-color', color);
-					if ( 'connector' == theme) {
+					if ( 'connector' === theme) {
 						$indicator.find('.wpforms-page-indicator-page-triangle').removeAttr('style');
 						$indicator.find('.active .wpforms-page-indicator-page-triangle').css('border-top-color', color);
 					}
 				} else if ('progress' === theme) {
 					var $pageTitle = $indicator.find('.wpforms-page-indicator-page-title'),
 						$pageSep   = $indicator.find('.wpforms-page-indicator-page-title-sep'),
-						totalPages = ($('.wpforms-page').length),
+						totalPages = $form.find('.wpforms-page').length,
 						width = (page2/totalPages)*100;
 					$indicator.find('.wpforms-page-indicator-page-progress').css('width', width+'%');
 					$indicator.find('.wpforms-page-indicator-steps-current').text(page2);
@@ -457,7 +553,7 @@
 				totalFormattedSymbol = 0,
 				currency             = WPForms.getCurrency();
 
-			$('.wpforms-payment-price').each(function(index, el) {
+			$('.wpforms-payment-price', $form).each(function(index, el) {
 
 				var amount = 0,
 					$this  = $(this);
@@ -477,7 +573,7 @@
 
 			totalFormatted = WPForms.amountFormat(total);
 
-			if ( 'left' == currency.symbol_pos) {
+			if ( 'left' === currency.symbol_pos) {
 				totalFormattedSymbol = currency.symbol+' '+totalFormatted;
 			} else {
 				totalFormattedSymbol = totalFormatted+' '+currency.symbol;
@@ -506,14 +602,14 @@
 
 			amount = amount.toString().replace(/[^0-9.,]/g,'');
 
-			if ( currency.decimal_sep == ',' && ( amount.indexOf(currency.decimal_sep) !== -1 ) ) {
-				if ( currency.thousands_sep == '.' && amount.indexOf(currency.thousands_sep) !== -1 ) {;
+			if ( currency.decimal_sep === ',' && ( amount.indexOf(currency.decimal_sep) !== -1 ) ) {
+				if ( currency.thousands_sep === '.' && amount.indexOf(currency.thousands_sep) !== -1 ) {
 					amount = amount.replace(currency.thousands_sep,'');
-				} else if( currency.thousands_sep == '' && amount.indexOf('.') !== -1 ) {
+				} else if( currency.thousands_sep === '' && amount.indexOf('.') !== -1 ) {
 					amount = amount.replace('.','');
 				}
 				amount = amount.replace(currency.decimal_sep,'.');
-			} else if ( currency.thousands_sep == ',' && ( amount.indexOf(currency.thousands_sep) !== -1 ) ) {
+			} else if ( currency.thousands_sep === ',' && ( amount.indexOf(currency.thousands_sep) !== -1 ) ) {
 				amount = amount.replace(currency.thousands_sep,'');
 			}
 
@@ -532,15 +628,15 @@
 			amount = String(amount);
 
 			// Format the amount
-			if ( currency.decimal_sep == ',' && ( amount.indexOf(currency.decimal_sep) !== -1 ) ) {
-				var sepFound = amount.indexOf(currency.decimal_sep);
-					whole    = amount.substr(0, sepFound);
+			if ( currency.decimal_sep === ',' && ( amount.indexOf(currency.decimal_sep) !== -1 ) ) {
+				var sepFound = amount.indexOf(currency.decimal_sep),
+					whole    = amount.substr(0, sepFound),
 					part     = amount.substr(sepFound+1, amount.strlen-1);
 				amount = whole + '.' + part;
 			}
 
 			// Strip , from the amount (if set as the thousands separator)
-			if ( currency.thousands_sep == ',' && ( amount.indexOf(currency.thousands_sep) !== -1 ) ) {
+			if ( currency.thousands_sep === ',' && ( amount.indexOf(currency.thousands_sep) !== -1 ) ) {
 				amount = amount.replace(',','');
 			}
 
@@ -564,7 +660,7 @@
 				decimal_sep: '.',
 				symbol: '$',
 				symbol_pos: 'left'
-			}
+			};
 
 			// Backwards compatibility.
 			if ( typeof wpforms_settings.currency_code !== 'undefined' ) {
@@ -594,25 +690,25 @@
 		 */
 		numberFormat: function (number, decimals, decimalSep, thousandsSep) {
 
-			number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
-			var n = !isFinite(+number) ? 0 : +number
-			var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
-			var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep
-			var dec = (typeof decimalSep === 'undefined') ? '.' : decimalSep
-			var s = ''
+			number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+			var n = !isFinite(+number) ? 0 : +number;
+			var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals);
+			var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep;
+			var dec = (typeof decimalSep === 'undefined') ? '.' : decimalSep;
+			var s;
 
 			var toFixedFix = function (n, prec) {
-				var k = Math.pow(10, prec)
+				var k = Math.pow(10, prec);
 				return '' + (Math.round(n * k) / k).toFixed(prec)
-			}
+			};
 
 			// @todo: for IE parseFloat(0.55).toFixed(0) = 0;
-			s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.')
+			s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
 			if (s[0].length > 3) {
 				s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
 			}
 			if ((s[1] || '').length < prec) {
-				s[1] = s[1] || ''
+				s[1] = s[1] || '';
 				s[1] += new Array(prec - s[1].length + 1).join('0')
 			}
 
@@ -627,11 +723,11 @@
 		 */
 		empty: function(mixedVar) {
 
-			var undef
-			var key
-			var i
-			var len
-			var emptyValues = [undef, null, false, 0, '', '0']
+			var undef;
+			var key;
+			var i;
+			var len;
+			var emptyValues = [undef, null, false, 0, '', '0'];
 
 			for (i = 0, len = emptyValues.length; i < len; i++) {
 				if (mixedVar === emptyValues[i]) {
@@ -642,13 +738,13 @@
 			if (typeof mixedVar === 'object') {
 				for (key in mixedVar) {
 					if (mixedVar.hasOwnProperty(key)) {
-						return false
+						return false;
 					}
 				}
-				return true
+				return true;
 			}
 
-			return false
+			return false;
 		},
 
 		/**
@@ -658,7 +754,7 @@
 		 */
 		setUserIndentifier: function() {
 
-			if ( ! WPForms.getCookie('_wpfuuid') ) {
+			if ( wpforms_settings.uuid_cookie && ! WPForms.getCookie('_wpfuuid') ) {
 
 				// Generate UUID - http://stackoverflow.com/a/873856/1489528
 				var s         = new Array(36),
@@ -685,18 +781,20 @@
 		 */
 		createCookie: function(name, value, days) {
 
+			var expires = '';
+
 			// If we have a days value, set it in the expiry of the cookie.
 			if ( days ) {
 				// If -1 is our value, set a session based cookie instead of a persistent cookie.
-				if ( '-1' == days ) {
-					var expires = '';
+				if ( '-1' === days ) {
+					expires = '';
 				} else {
 					var date = new Date();
 					date.setTime(date.getTime() + (days*24*60*60*1000));
-					var expires = '; expires=' + date.toGMTString();
+					expires = '; expires=' + date.toGMTString();
 				}
 			} else {
-				var expires = '; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+				expires = '; expires=Thu, 01 Jan 1970 00:00:01 GMT';
 			}
 
 			// Write the cookie.
@@ -715,7 +813,7 @@
 
 			for ( var i = 0; i < ca.length; i++ ) {
 				var c = ca[i];
-				while ( c.charAt(0) == ' ' ) {
+				while ( c.charAt(0) === ' ' ) {
 					c = c.substring(1, c.length);
 				}
 				if ( c.indexOf(nameEQ) == 0 ) {
@@ -733,10 +831,31 @@
 
 			WPForms.createCookie(name, '',-1);
 		}
-	}
+	};
 
+	// Initialize.
 	WPForms.init();
 
+	// Add to global scope.
 	window.wpforms = WPForms;
 
+	//--------------------------------------------------------------------//
+	// jQuery Functions.
+	//--------------------------------------------------------------------//
+
+	/**
+	 * Randomize selectors.
+	 *
+	 * @since 1.4.4
+	 */
+	$.fn.randomize = function( selector ){
+
+		var $elems = selector ? $( this ).find( selector ) : $( this ).children();
+
+		for ( var i = $elems.length; i >= 0; i-- ) {
+			$( this ).append( $elems[ Math.random() * i | 0 ] );
+		}
+
+		return this;
+	}
 })(jQuery);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Load the providers.
  *
@@ -7,7 +8,7 @@
  * @since      1.3.6
  * @license    GPL-2.0+
  * @copyright  Copyright (c) 2017, WPForms LLC
-*/
+ */
 class WPForms_Providers {
 
 	/**
@@ -27,10 +28,10 @@ class WPForms_Providers {
 	 */
 	public function init() {
 
-		// Parent class template
+		// Parent class template.
 		require_once WPFORMS_PLUGIN_DIR . 'includes/providers/class-base.php';
 
-		// Load default templates on WP init
+		// Load default templates on WP init.
 		add_action( 'wpforms_loaded', array( $this, 'load' ) );
 	}
 
@@ -48,8 +49,12 @@ class WPForms_Providers {
 		$providers = apply_filters( 'wpforms_load_providers', $providers );
 
 		foreach ( $providers as $provider ) {
+
+			$provider = sanitize_file_name( $provider );
+
 			require_once WPFORMS_PLUGIN_DIR . 'includes/providers/class-' . $provider . '.php';
 		}
 	}
 }
+
 new WPForms_Providers;

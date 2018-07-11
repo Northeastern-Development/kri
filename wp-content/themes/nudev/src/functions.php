@@ -93,34 +93,34 @@ function nudev_nav()
  * [list_searcheable_acf list all the custom fields we want to include in our search query]
  * @return [array] [list of custom fields]
  */
-function list_searcheable_acf(){
-  $list_searcheable_acf = array(
-     'title_panel'
-    ,'type'
-    ,'image'
-    ,'caption'
-    ,'photo_credit'
-    ,'primary_title'
-    ,'secondary_title'
-    ,'background_image_caption'
-    ,'background_image_photo_credit'
-    ,'copy'
-    ,'side_note_copy'
-    ,'copy_block'
-    ,'stats_caption'
-    ,'stats_photo_credit'
-    ,'stats'
-    ,'content'
-    ,'quote'
-    ,'rubrick_rubric'
-    // ,'rubric'
-    ,'author_name'
-    ,'short_bio'
-    ,'full_bio'
-    ,'email'
-  );
-  return $list_searcheable_acf;
-}
+// function list_searcheable_acf(){
+//   $list_searcheable_acf = array(
+//      'title_panel'
+//     ,'type'
+//     ,'image'
+//     ,'caption'
+//     ,'photo_credit'
+//     ,'primary_title'
+//     ,'secondary_title'
+//     ,'background_image_caption'
+//     ,'background_image_photo_credit'
+//     ,'copy'
+//     ,'side_note_copy'
+//     ,'copy_block'
+//     ,'stats_caption'
+//     ,'stats_photo_credit'
+//     ,'stats'
+//     ,'content'
+//     ,'quote'
+//     ,'rubrick_rubric'
+//     // ,'rubric'
+//     ,'author_name'
+//     ,'short_bio'
+//     ,'full_bio'
+//     ,'email'
+//   );
+//   return $list_searcheable_acf;
+// }
 /**
  * [advanced_custom_search search that encompasses ACF/advanced custom fields and taxonomies and split expression before request]
  * @param  [query-part/string]      $where    [the initial "where" part of the search query]
@@ -129,75 +129,75 @@ function list_searcheable_acf(){
  * see https://vzurczak.wordpress.com/2013/06/15/extend-the-default-wordpress-search/
  * credits to Vincent Zurczak for the base query structure/spliting tags section
  */
-function advanced_custom_search( $where, &$wp_query ) {
-    global $wpdb;
-
-    if ( empty( $where ))
-        return $where;
-
-    // get search expression
-    $terms = $wp_query->query_vars[ 's' ];
-
-    // explode search expression to get search terms
-    $exploded = explode( ' ', $terms );
-    if( $exploded === FALSE || count( $exploded ) == 0 )
-        $exploded = array( 0 => $terms );
-
-    // reset search in order to rebuilt it as we whish
-    $where = '';
-
-    // get searcheable_acf, a list of advanced custom fields you want to search content in
-    $list_searcheable_acf = list_searcheable_acf();
-    foreach( $exploded as $tag ) :
-        $where .= "
-          AND (
-            (wp_posts.post_title LIKE '%$tag%')
-            OR (wp_posts.post_content LIKE '%$tag%')
-            OR EXISTS (
-              SELECT * FROM wp_postmeta
-	              WHERE post_id = wp_posts.ID
-	                AND (";
-        foreach ($list_searcheable_acf as $searcheable_acf) :
-          if ($searcheable_acf == $list_searcheable_acf[0]):
-            $where .= " (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
-          else :
-            $where .= " OR (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
-          endif;
-        endforeach;
-	        $where .= ")
-            )
-            OR EXISTS (
-              SELECT * FROM wp_comments
-              WHERE comment_post_ID = wp_posts.ID
-                AND comment_content LIKE '%$tag%'
-            )
-            OR EXISTS(
-              SELECT * FROM wp_terms
-              INNER JOIN wp_postmeta
-                ON wp_postmeta.meta_value = wp_terms.term_id
-              WHERE post_id = wp_posts.ID
-              AND wp_terms.name LIKE '%$tag%'
-            )
-            OR EXISTS (
-              SELECT * FROM wp_terms
-              INNER JOIN wp_term_taxonomy
-                ON wp_term_taxonomy.term_id = wp_terms.term_id
-              INNER JOIN wp_term_relationships
-                ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
-              WHERE (
-          		taxonomy = 'post_tag'
-            		OR taxonomy = 'category'
-            		OR taxonomy = 'myCustomTax'
-          		)
-              	AND object_id = wp_posts.ID
-              	AND wp_terms.name LIKE '%$tag%'
-            )
-        )";
-    endforeach;
-    return $where;
-}
-
-add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
+// function advanced_custom_search( $where, &$wp_query ) {
+//     global $wpdb;
+//
+//     if ( empty( $where ))
+//         return $where;
+//
+//     // get search expression
+//     $terms = $wp_query->query_vars[ 's' ];
+//
+//     // explode search expression to get search terms
+//     $exploded = explode( ' ', $terms );
+//     if( $exploded === FALSE || count( $exploded ) == 0 )
+//         $exploded = array( 0 => $terms );
+//
+//     // reset search in order to rebuilt it as we whish
+//     $where = '';
+//
+//     // get searcheable_acf, a list of advanced custom fields you want to search content in
+//     $list_searcheable_acf = list_searcheable_acf();
+//     foreach( $exploded as $tag ) :
+//         $where .= "
+//           AND (
+//             (wp_posts.post_title LIKE '%$tag%')
+//             OR (wp_posts.post_content LIKE '%$tag%')
+//             OR EXISTS (
+//               SELECT * FROM wp_postmeta
+// 	              WHERE post_id = wp_posts.ID
+// 	                AND (";
+//         foreach ($list_searcheable_acf as $searcheable_acf) :
+//           if ($searcheable_acf == $list_searcheable_acf[0]):
+//             $where .= " (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
+//           else :
+//             $where .= " OR (meta_key LIKE '%" . $searcheable_acf . "%' AND meta_value LIKE '%$tag%') ";
+//           endif;
+//         endforeach;
+// 	        $where .= ")
+//             )
+//             OR EXISTS (
+//               SELECT * FROM wp_comments
+//               WHERE comment_post_ID = wp_posts.ID
+//                 AND comment_content LIKE '%$tag%'
+//             )
+//             OR EXISTS(
+//               SELECT * FROM wp_terms
+//               INNER JOIN wp_postmeta
+//                 ON wp_postmeta.meta_value = wp_terms.term_id
+//               WHERE post_id = wp_posts.ID
+//               AND wp_terms.name LIKE '%$tag%'
+//             )
+//             OR EXISTS (
+//               SELECT * FROM wp_terms
+//               INNER JOIN wp_term_taxonomy
+//                 ON wp_term_taxonomy.term_id = wp_terms.term_id
+//               INNER JOIN wp_term_relationships
+//                 ON wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id
+//               WHERE (
+//           		taxonomy = 'post_tag'
+//             		OR taxonomy = 'category'
+//             		OR taxonomy = 'myCustomTax'
+//           		)
+//               	AND object_id = wp_posts.ID
+//               	AND wp_terms.name LIKE '%$tag%'
+//             )
+//         )";
+//     endforeach;
+//     return $where;
+// }
+//
+// add_filter( 'posts_search', 'advanced_custom_search', 500, 2 );
 
 
 
@@ -266,8 +266,8 @@ add_action('init', 'disable_embeds_init', 9999);
 
 //* Adding DNS Prefetching
 function ism_dns_prefetch() {
-    echo '<meta http-equiv="x-dns-prefetch-control" content="on">';
-// <link rel="dns-prefetch" href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" />';
+    echo '<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" />';
 
 }
 
@@ -302,41 +302,75 @@ function nudev_header_scripts()
         // If production
         } else {
             // Scripts minify
-            wp_register_script('nudevscripts-min', get_template_directory_uri() . '/js/scripts.min.js', array(), '1.0.0');
+            //wp_register_script('nudevscripts-min', get_template_directory_uri() . '/js/scripts.min.js', array(jquery), '1.0.0');
             // Enqueue Scripts
-            wp_enqueue_script('nudevscripts-min');
+            //wp_enqueue_script('nudevscripts-min');
         }
     }
 }
 
+
+
 // load custom jquery
-function nudev_include_custom_jquery() {
+// function nudev_include_custom_jquery() {
+// 	wp_deregister_script('jquery');
+// 	wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js', array(), false, '2.2.0', true);
+// }
+// add_action('wp_enqueue_scripts', 'nudev_include_custom_jquery');
+
+// include custom jQuery
+function neudev_include_custom_jquery() {
+
 	wp_deregister_script('jquery');
 	wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js', array(), false, '2.2.0', true);
+
 }
-add_action('wp_enqueue_scripts', 'nudev_include_custom_jquery');
+add_action('wp_enqueue_scripts', 'neudev_include_custom_jquery');
+
+
+
+function nudev_footer_scripts() {
+
+   if ( is_page( 14 ) ) {//location page
+     wp_register_script('mapstyles', get_template_directory_uri() . '/js/lib/mapstyle-min.js',  array(), '1.0.0', true);
+     wp_enqueue_script('mapstyles');
+
+     wp_enqueue_script('googlemap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDIi5IUYN3xySijRqfhNDikL-MhWbYARoQ&callback=initMap', array(), '1.0.0', true);
+     wp_enqueue_script('googlemap');
+   }
+
+   wp_register_script('nudevscripts-min', get_template_directory_uri() . '/js/scripts-min.js',  array('jquery'), '1.0.0', true);
+   wp_enqueue_script('nudevscripts-min');
+
+
+
+
+}
+add_action('wp_footer', 'nudev_footer_scripts');
 
 
 
 
 
-
-
-
-
-
-// Load nudev conditional scripts
+/* **********************************************************************
+Page Conditional Scripts
+********************************************************************** */
 function nudev_conditional_scripts(){
 
-
-  // load the article style: multimedia
-  if(is_page_template('templates/single-media.php')){
+  // load magnific for the staff pages
+  if(is_page_template('templates/template-staff.php')){
     wp_register_script('magnificjs', get_template_directory_uri() . '/js/magnific.js', array(), '1.0.0');
     wp_enqueue_script('magnificjs');
   }
 
-
 }
+
+/* ******************************************************************* */
+
+
+
+// Load nudev conditional scripts
+
 
 
 
@@ -368,55 +402,60 @@ function nudev_styles(){
 
 
 
+
     // load homepage styles
-    if(is_page('')){
-      wp_register_style('homepagecss', get_template_directory_uri() . '/css/homepage.css', array(), '1.0');
-      wp_enqueue_style('homepagecss');
-    }
+    // if(is_page('')){
+    //   wp_register_style('homepagecss', get_template_directory_uri() . '/css/homepage.css', array(), '1.0');
+    //   wp_enqueue_style('homepagecss');
+    // }
 
 
-    if(get_query_var('s') != ""){
-      //echo "SEARCH RESULT: ".$_GET['s'];
-      wp_register_style('searchcss', get_template_directory_uri() . '/css/category.css', array(), '1.0');
-      wp_enqueue_style('searchcss');
-    }
+    // if(get_query_var('s') != ""){
+    //   //echo "SEARCH RESULT: ".$_GET['s'];
+    //   wp_register_style('searchcss', get_template_directory_uri() . '/css/category.css', array(), '1.0');
+    //   wp_enqueue_style('searchcss');
+    // }
 
 
     // load the category styles
-    if(is_page_template('templates/template-category.php')){
-      wp_register_style('categorycss', get_template_directory_uri() . '/css/category.css', array(), '1.0');
-      wp_enqueue_style('categorycss');
-    }
+    // if(is_page_template('templates/template-category.php')){
+    //   wp_register_style('categorycss', get_template_directory_uri() . '/css/category.css', array(), '1.0');
+    //   wp_enqueue_style('categorycss');
+    // }
 
 
     // load the article style: editorial
-    if(is_page_template('templates/single-editorial.php')){
-      wp_register_style('editorialcss', get_template_directory_uri() . '/css/editorial.css', array(), '1.0');
-      wp_enqueue_style('editorialcss');
-    }
+    // if(is_page_template('templates/single-editorial.php')){
+    //   wp_register_style('editorialcss', get_template_directory_uri() . '/css/editorial.css', array(), '1.0');
+    //   wp_enqueue_style('editorialcss');
+    // }
 
 
-    // load the article style: multi-panel
-    if(is_page_template('templates/single-panels.php')){
-      wp_register_style('panelscss', get_template_directory_uri() . '/css/panels.css', array(), '1.0');
-      wp_enqueue_style('panelscss');
+    // load the staff styles
+    if(is_page_template('templates/template-staff.php')){
+      wp_register_style('staffcss', get_template_directory_uri() . '/css/staff.css', array(), '1.0');
+      wp_enqueue_style('staffcss');
+      wp_register_style('magnificcss', get_template_directory_uri() . '/css/magnific.css', array(), '1.0');
+      wp_enqueue_style('magnificcss');
     }
 
 
     // load the article style: multimedia
-    if(is_page_template('templates/single-media.php')){
-      wp_register_style('magnificcss', get_template_directory_uri() . '/css/magnific.css', array(), '1.0');
-      wp_enqueue_style('magnificcss');
-      wp_register_style('multimediacss', get_template_directory_uri() . '/css/multimedia.css', array(), '1.0');
-      wp_enqueue_style('multimediacss');
-    }
+    // if(is_page_template('templates/single-media.php')){
+    //   wp_register_style('magnificcss', get_template_directory_uri() . '/css/magnific.css', array(), '1.0');
+    //   wp_enqueue_style('magnificcss');
+    //   wp_register_style('multimediacss', get_template_directory_uri() . '/css/multimedia.css', array(), '1.0');
+    //   wp_enqueue_style('multimediacss');
+    // }
+
+
 
 
     // load the static styles for the about and submit a story templates
-    if(is_page_template(array('templates/template-about.php','templates/template-submitstory.php','templates/template-contact.php'))){
-      wp_register_style('staticcss', get_template_directory_uri() . '/css/static.css', array(), '1.0');
-      wp_enqueue_style('staticcss');
-    }
+    // if(is_page_template(array('templates/template-about.php','templates/template-submitstory.php','templates/template-contact.php'))){
+    //   wp_register_style('staticcss', get_template_directory_uri() . '/css/static.css', array(), '1.0');
+    //   wp_enqueue_style('staticcss');
+    // }
 
 
 
@@ -427,8 +466,8 @@ function register_nudev_menu()
 {
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'nudev'), // Main Navigation
-        'sidebar-menu' => __('Sidebar Menu', 'nudev'), // Sidebar Navigation
-        'extra-menu' => __('Extra Menu', 'nudev') // Extra Navigation if needed (duplicate as many as you need!)
+        // 'sidebar-menu' => __('Sidebar Menu', 'nudev'), // Sidebar Navigation
+        // 'extra-menu' => __('Extra Menu', 'nudev') // Extra Navigation if needed (duplicate as many as you need!)
     ));
 }
 
@@ -451,56 +490,56 @@ function register_nudev_menu()
  * @param array $plugins An array of all plugins.
  * @return array
  */
-function mce_custom_plugins( $mceplugins ) {
-  //die("this is trying to load a plugin!!!");
-    $mceplugins['lineheight'] = plugins_url( 'tinymce/') . 'lineheight/plugin.js';
-     return $mceplugins;
-}
-add_filter( 'mce_external_plugins', 'mce_custom_plugins' );
-
-
-if ( ! function_exists( 'wpex_mce_lineheights' ) ) {
-    function wpex_mce_lineheights( $initArray ){
-      $fSizes = "";
-      for($i=9;$i<=100;$i++){
-        $fSizes .= ($i>9?" ":"").$i."px";
-      }
-      $initArray['lineheight_formats'] = $fSizes;
-      return $initArray;
-    }
-}
-add_filter( 'tiny_mce_before_init', 'wpex_mce_lineheights' );
-
-if ( ! function_exists( 'load_custom_fonts' ) ) {
-    function load_custom_fonts( $initArray ){
-      // $fSizes = "";
-      // for($i=9;$i<=100;$i++){
-      //   $fSizes .= ($i>9?" ":"").$i."px";
-      // }
-      // $initArray['fontsize_formats'] = $fSizes;
-
-      //$theme_advanced_fonts = array("Tungsten");
-
-      //$initArray['$theme_advanced_fonts'] = 'Aclonica=Aclonica, sans-serif;';
-
-      // $init['content_css'] = "https://fonts.googleapis.com/css?family=Lato";
-      $initArray['content_css'] = "https://cloud.typography.com/7862092/6820572/css/fonts.css";
-
-      $initArray['font_formats'] = "Tungsten='Tungsten Rounded A','Tungsten Rounded B'";
-
-
-      //function wpex_mce_text_sizes( $initArray ){
-        $fSizes = "";
-        for($i=9;$i<=100;$i++){
-          $fSizes .= ($i>9?" ":"").$i."px";
-        }
-        $initArray['fontsize_formats'] = $fSizes;
-        //return $initArray;
-
-      return $initArray;
-    }
-}
-add_filter( 'tiny_mce_before_init', 'load_custom_fonts' );
+// function mce_custom_plugins( $mceplugins ) {
+//   //die("this is trying to load a plugin!!!");
+//     $mceplugins['lineheight'] = plugins_url( 'tinymce/') . 'lineheight/plugin.js';
+//      return $mceplugins;
+// }
+// add_filter( 'mce_external_plugins', 'mce_custom_plugins' );
+//
+//
+// if ( ! function_exists( 'wpex_mce_lineheights' ) ) {
+//     function wpex_mce_lineheights( $initArray ){
+//       $fSizes = "";
+//       for($i=9;$i<=100;$i++){
+//         $fSizes .= ($i>9?" ":"").$i."px";
+//       }
+//       $initArray['lineheight_formats'] = $fSizes;
+//       return $initArray;
+//     }
+// }
+// add_filter( 'tiny_mce_before_init', 'wpex_mce_lineheights' );
+//
+// if ( ! function_exists( 'load_custom_fonts' ) ) {
+//     function load_custom_fonts( $initArray ){
+//       // $fSizes = "";
+//       // for($i=9;$i<=100;$i++){
+//       //   $fSizes .= ($i>9?" ":"").$i."px";
+//       // }
+//       // $initArray['fontsize_formats'] = $fSizes;
+//
+//       //$theme_advanced_fonts = array("Tungsten");
+//
+//       //$initArray['$theme_advanced_fonts'] = 'Aclonica=Aclonica, sans-serif;';
+//
+//       // $init['content_css'] = "https://fonts.googleapis.com/css?family=Lato";
+//       $initArray['content_css'] = "https://cloud.typography.com/7862092/6820572/css/fonts.css";
+//
+//       $initArray['font_formats'] = "Tungsten='Tungsten Rounded A','Tungsten Rounded B'";
+//
+//
+//       //function wpex_mce_text_sizes( $initArray ){
+//         $fSizes = "";
+//         for($i=9;$i<=100;$i++){
+//           $fSizes .= ($i>9?" ":"").$i."px";
+//         }
+//         $initArray['fontsize_formats'] = $fSizes;
+//         //return $initArray;
+//
+//       return $initArray;
+//     }
+// }
+// add_filter( 'tiny_mce_before_init', 'load_custom_fonts' );
 
 // if ( ! function_exists( 'wpex_mce_text_sizes' ) ) {
 //     function wpex_mce_text_sizes( $initArray ){
@@ -528,13 +567,13 @@ add_filter( 'mce_buttons', 'thisismyurl_remove_full_screen_button', 999 );
 
 
 
-function my_mce_buttons_line_2( $buttons ) {
-
-  // array_unshift( $buttons, 'fontselect |  fontsizeselect | lineheightselect' );
-  array_push( $buttons, 'fontselect','fontsizeselect','lineheightselect' );
-  return $buttons;
-}
-add_filter( 'mce_buttons_2', 'my_mce_buttons_line_2' );
+// function my_mce_buttons_line_2( $buttons ) {
+//
+//   // array_unshift( $buttons, 'fontselect |  fontsizeselect | lineheightselect' );
+//   array_push( $buttons, 'fontselect','fontsizeselect','lineheightselect' );
+//   return $buttons;
+// }
+// add_filter( 'mce_buttons_2', 'my_mce_buttons_line_2' );
 
 
 
@@ -605,26 +644,26 @@ function remove_width_attribute( $html ) {
 if (function_exists('register_sidebar'))
 {
     // Define Sidebar Widget Area 1
-    register_sidebar(array(
-        'name' => __('Widget Area 1', 'nudev'),
-        'description' => __('Description for this widget-area...', 'nudev'),
-        'id' => 'widget-area-1',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3>',
-        'after_title' => '</h3>'
-    ));
-
-    // Define Sidebar Widget Area 2
-    register_sidebar(array(
-        'name' => __('Widget Area 2', 'nudev'),
-        'description' => __('Description for this widget-area...', 'nudev'),
-        'id' => 'widget-area-2',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3>',
-        'after_title' => '</h3>'
-    ));
+    // register_sidebar(array(
+    //     'name' => __('Widget Area 1', 'nudev'),
+    //     'description' => __('Description for this widget-area...', 'nudev'),
+    //     'id' => 'widget-area-1',
+    //     'before_widget' => '<div id="%1$s" class="%2$s">',
+    //     'after_widget' => '</div>',
+    //     'before_title' => '<h3>',
+    //     'after_title' => '</h3>'
+    // ));
+    //
+    // // Define Sidebar Widget Area 2
+    // register_sidebar(array(
+    //     'name' => __('Widget Area 2', 'nudev'),
+    //     'description' => __('Description for this widget-area...', 'nudev'),
+    //     'id' => 'widget-area-2',
+    //     'before_widget' => '<div id="%1$s" class="%2$s">',
+    //     'after_widget' => '</div>',
+    //     'before_title' => '<h3>',
+    //     'after_title' => '</h3>'
+    // ));
 }
 
 // Remove wp_head() injected Recent Comment styles
@@ -923,21 +962,21 @@ function create_post_type_nudev()
 {
     register_taxonomy_for_object_type('category', 'nudev'); // Register Taxonomies for Category
     register_taxonomy_for_object_type('post_tag', 'nudev');
-    register_post_type('nudev', // Register Custom Post Type
+    register_post_type('careers', // Register Custom Post Type
         array(
         'labels' => array(
-            'name' => __('Authors', 'nudev'), // Rename these to suit
-            'singular_name' => __('Author', 'nudev'),
+            'name' => __('Careers', 'nudev'), // Rename these to suit
+            'singular_name' => __('Careers', 'nudev'),
             'add_new' => __('Add New', 'nudev'),
-            'add_new_item' => __('Add New Author', 'nudev'),
+            'add_new_item' => __('Add New Career Opportunity', 'nudev'),
             'edit' => __('Edit', 'nudev'),
-            'edit_item' => __('Edit Author', 'nudev'),
-            'new_item' => __('New Author', 'nudev'),
-            'view' => __('View Author', 'nudev'),
-            'view_item' => __('View Author', 'nudev'),
-            'search_items' => __('Search Authors', 'nudev'),
-            'not_found' => __('No Authors found', 'nudev'),
-            'not_found_in_trash' => __('No Authors found in Trash', 'nudev')
+            'edit_item' => __('Edit Career Opportunity', 'nudev'),
+            'new_item' => __('New Career Opportunity', 'nudev'),
+            'view' => __('View Career Opportunities', 'nudev'),
+            'view_item' => __('View Career Opportunities', 'nudev'),
+            'search_items' => __('Search Career Opportunities', 'nudev'),
+            'not_found' => __('No Careers found', 'nudev'),
+            'not_found_in_trash' => __('No Careers found in Trash', 'nudev')
         ),
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
@@ -955,23 +994,23 @@ function create_post_type_nudev()
         ) // Add Category and Post Tags support
     ));
 
-    register_taxonomy_for_object_type('category', 'classnotes'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'classnotes');
-    register_post_type('classnotes', // Register Custom Post Type
+    register_taxonomy_for_object_type('category', 'Staff'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('post_tag', 'Staff');
+    register_post_type('staff', // Register Custom Post Type
         array(
         'labels' => array(
-            'name' => __('Class Notes', 'nudev'), // Rename these to suit
-            'singular_name' => __('Class Notes', 'nudev'),
+            'name' => __('Staff', 'nudev'), // Rename these to suit
+            'singular_name' => __('Staff', 'nudev'),
             'add_new' => __('Add New', 'nudev'),
-            'add_new_item' => __('Add New Class Note', 'nudev'),
+            'add_new_item' => __('Add New Staff Member', 'nudev'),
             'edit' => __('Edit', 'nudev'),
-            'edit_item' => __('Edit Class Note', 'nudev'),
-            'new_item' => __('New Class Note', 'nudev'),
-            'view' => __('View Class Note', 'nudev'),
-            'view_item' => __('View Class Note', 'nudev'),
-            'search_items' => __('Search Class Notes', 'nudev'),
-            'not_found' => __('No Class Notes found', 'nudev'),
-            'not_found_in_trash' => __('No Class Notes found in Trash', 'nudev')
+            'edit_item' => __('Edit Staff Member', 'nudev'),
+            'new_item' => __('New Staff Member', 'nudev'),
+            'view' => __('View Staff Member', 'nudev'),
+            'view_item' => __('View Staff Member', 'nudev'),
+            'search_items' => __('Search Staff Members', 'nudev'),
+            'not_found' => __('No Staff Members found', 'nudev'),
+            'not_found_in_trash' => __('No Staff Members found in Trash', 'nudev')
         ),
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
@@ -988,6 +1027,40 @@ function create_post_type_nudev()
             'category'
         ) // Add Category and Post Tags support
     ));
+
+    // register_taxonomy_for_object_type('category', 'classnotes'); // Register Taxonomies for Category
+    // register_taxonomy_for_object_type('post_tag', 'classnotes');
+    // register_post_type('classnotes', // Register Custom Post Type
+    //     array(
+    //     'labels' => array(
+    //         'name' => __('Class Notes', 'nudev'), // Rename these to suit
+    //         'singular_name' => __('Class Notes', 'nudev'),
+    //         'add_new' => __('Add New', 'nudev'),
+    //         'add_new_item' => __('Add New Class Note', 'nudev'),
+    //         'edit' => __('Edit', 'nudev'),
+    //         'edit_item' => __('Edit Class Note', 'nudev'),
+    //         'new_item' => __('New Class Note', 'nudev'),
+    //         'view' => __('View Class Note', 'nudev'),
+    //         'view_item' => __('View Class Note', 'nudev'),
+    //         'search_items' => __('Search Class Notes', 'nudev'),
+    //         'not_found' => __('No Class Notes found', 'nudev'),
+    //         'not_found_in_trash' => __('No Class Notes found in Trash', 'nudev')
+    //     ),
+    //     'public' => true,
+    //     'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+    //     'has_archive' => true,
+    //     'supports' => array(
+    //         'title',
+    //         'editor',
+    //         'excerpt',
+    //         'thumbnail'
+    //     ), // Go to Dashboard Custom nudev post for supports
+    //     'can_export' => true, // Allows export in Tools > Export
+    //     'taxonomies' => array(
+    //         'post_tag',
+    //         'category'
+    //     ) // Add Category and Post Tags support
+    // ));
 }
 
 /*------------------------------------*\

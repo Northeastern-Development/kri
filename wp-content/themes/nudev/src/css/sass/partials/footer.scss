@@ -5,6 +5,8 @@
 
  footer{
   flex: none;
+  position:relative;
+  z-index:101;
   & > div#sitefooter{
     background: rgba(0,0,0,1.0);
     color: rgba(255,255,255,1.0);
@@ -29,13 +31,18 @@
               width: 200px;
               height: auto;
             }
+            & svg{
+              width: 220px;
+            }
             & > a{
               font-size: 0;
             }
           }
+
           & > a{
             color: rgba(255,255,255,1.0);
-            font-size: 1.3rem;
+            font-size:1.4rem;
+            font-weight:300;
             &.download{
               border: solid rgba(255,255,255,1.0) 1px;
               background: rgba(0,0,0,1.0);
@@ -56,6 +63,8 @@
           &:not(.contact){
             & > a{
               text-transform: uppercase;
+              font-size: 1.6rem;
+              font-weight:700;
             }
           }
         }
@@ -64,93 +73,94 @@
   }
 
 
-  & > div#nu__global-footer{
+  // & > div#nu__global-footer{
+  //
+  //   background: rgba(99, 99, 99, 1.0);
+  //    color: rgba(255,255,255,1.0);
+  //    font-size: 1rem;
+  //    letter-spacing: 0.03em;
+  //    width: 100%;
+  //   //  height: 100px;
+  //    padding:20px 0 20px 0;
+  //    font-family: Arial,Verdana,sans-serif;
+  //    overflow:auto;
+  //    & > div{
+  //      width: $content-width;
+  //      margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
+  //       position: relative;
+  //       & > a{
+  //         color: rgba(0,0,0,0.0);
+  //         float: left;
+  //         margin-right: 20px;
+  //         & > img,
+  //         & > svg{
+  //          fill: rgba(255,255,255,1.0);
+  //          width:173px;
+  //          height:30px;
+  //         }
+  //       }
+  //       & > div{
+  //         float: right;
+  //         & > ul{
+  //           color: #ccc;
+  //           display: inline;
+  //           float: left;
+  //           font-size: 1.2em;
+  //           list-style-type: none;
+  //           margin: 0 0 5px 0;
+  //           padding:0;
+  //           color: rgba(255,255,255,1.0);
+  //           & > li{
+  //             float: left;
+  //             margin-right: 10px;
+  //             color: rgba(255,255,255,1.0);
+  //             &:after {
+  //               content: '·';
+  //             }
+  //             &:last-child{
+  //               &:after {
+  //                 content:'';
+  //               }
+  //             }
+  //             & > a{
+  //               margin-right: 10px;
+  //               color: rgba(255,255,255,1.0);
+  //               text-decoration: none;
+  //               font-family: Arial,Verdana,sans-serif;
+  //               &:visited{
+  //                 color: rgba(255,255,255,1.0);
+  //                 text-decoration: none;
+  //               }
+  //               &:hover,
+  //               &:active{
+  //                 color: rgba(255,255,255,1.0) !important;
+  //                 text-decoration: underline !important;
+  //               }
+  //             }
+  //           }
+  //         }
+  //         & > p{
+  //           clear: both;
+  //           color: #ccc;
+  //           font-size: 100%;
+  //           height: auto;
+  //           line-height: 1.4em;
+  //           margin: 0;
+  //           padding: 0;
+  //           color: #ccc;
+  //             & > a{
+  //               color: #ccc;
+  //               &:hover{
+  //                 color: #ccc !important;
+  //                 text-decoration: underline !important;
+  //               }
+  //             }
+  //         }
+  //       }
+  //     }
+  //    }
 
-    background: rgba(99, 99, 99, 1.0);
-     color: rgba(255,255,255,1.0);
-     font-size: 1rem;
-     letter-spacing: 0.03em;
-     width: 100%;
-     height: 100px;
-     padding:20px 0 20px 0;
-     font-family: Arial,Verdana,sans-serif;
-
-     & > div{
-       width: $content-width;
-       margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);
-        position: relative;
-        & > a{
-          color: rgba(0,0,0,0.0);
-          float: left;
-          margin-right: 20px;
-          & > img,
-          & > svg{
-           fill: rgba(255,255,255,1.0);
-           height: 2vw;
-          }
-        }
-        & > div{
-          float: right;
-          & > ul{
-            color: #ccc;
-            display: inline;
-            float: left;
-            font-size: 1.2em;
-            list-style-type: none;
-            margin: 0 0 5px 0;
-            padding:0;
-            color: rgba(255,255,255,1.0);
-            & > li{
-              float: left;
-              margin-right: 10px;
-              color: rgba(255,255,255,1.0);
-              &:after {
-                content: '·';
-              }
-              &:last-child{
-                &:after {
-                  content:'';
-                }
-              }
-              & > a{
-                margin-right: 10px;
-                color: rgba(255,255,255,1.0);
-                text-decoration: none;
-                font-family: Arial,Verdana,sans-serif;
-                &:visited{
-                  color: rgba(255,255,255,1.0);
-                  text-decoration: none;
-                }
-                &:hover,
-                &:active{
-                  color: rgba(255,255,255,1.0) !important;
-                  text-decoration: underline !important;
-                }
-              }
-            }
-          }
-          & > p{
-            clear: both;
-            color: #ccc;
-            font-size: 100%;
-            height: auto;
-            line-height: 1.4em;
-            margin: 0;
-            padding: 0;
-            color: #ccc;
-              & > a{
-                color: #ccc;
-                &:hover{
-                  color: #ccc !important;
-                  text-decoration: underline !important;
-                }
-              }
-          }
-        }
-      }
-     }
-
-  }
+}
 
 
 

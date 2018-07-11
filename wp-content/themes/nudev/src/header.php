@@ -36,45 +36,28 @@
 		<link rel="icon" type="image/png" sizes="96x96" href="<?php echo get_template_directory_uri(); ?>/favicon/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri(); ?>/favicon/favicon-16x16.png">
 		<link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/favicon/manifest.json">
-		<link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7862092/6820572/css/fonts.css" />
-		<link href="https://fonts.googleapis.com/css?family=Lato:200,300,400,700,900" rel="stylesheet">
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/favicon/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
-
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/font-awesome.min.css">
 
 
 		<?php wp_head(); ?>
 
-		<script type='text/javascript' src='<?php echo get_template_directory_uri(); ?>/js/scripts.js'></script>
+
 
 	</head>
 	<body <?php body_class(); ?>>
 
-		<!-- <p class="testp" style="position:fixed;background:#000;color:#fff;top:100px;left:0;font-weight:bold;font-size:20px;z-index:99999999;"></p> -->
+		<p class="testp" style="position:fixed;background:#000;color:#fff;top:100px;left:0;font-weight:bold;font-size:20px;z-index:99999999;"></p>
 
 		<!-- wrapper -->
 		<div class="wrapper">
 
-			<!-- header -->
-			<header role="banner">
-
-				<!-- logo -->
-				<div id="logo">
-					<a href="<?=home_url()?>" title="Kostas Research Institute">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/logo.jpg" alt="kostas research institute logo">Kostas Research Institute
-					</a>
+			<?php if(function_exists("wp_globalheader")){wp_globalheader();} ?><header class="header clear" role="banner">
+				<div id="header">
+					<?php require_once(dirname(__FILE__)."/includes/navigation.php"); ?>
 				</div>
-				<!-- /logo -->
-
-				<!-- nav -->
-				<nav role="navigation" class="menu">
-					<?php nudev_nav(); ?>
-				</nav>
-				<!-- /nav -->
 
 			</header>
-			<!-- /header -->
