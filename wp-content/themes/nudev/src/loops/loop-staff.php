@@ -37,7 +37,7 @@
 			for($i=0;$i<6;$i++){	// this loop is only for testing to get more items on screen, remove for real use
 
 				foreach($this->res as $r){
-					$return .= $this->buildRecord(get_fields($r->ID));
+					$return .= $this->buildRecord($r->post_name,get_fields($r->ID));
 				}
 
 			}
@@ -48,15 +48,16 @@
 
 		}
 
-		public function buildRecord($a=''):string{
+		public function buildRecord($a='',$b=''):string{
 
-			$guide = '<li><a href="#" title="Click to view profile"><div style="background: url(%s);"></div><h3>%s</h3><h4>%s</h4><p>View profile</p></li>';
+			$guide = '<li><a href="%s" title="Click to view profile" class="js__bio"><div style="background: url(%s);"></div><h3>%s</h3><h4>%s</h4><p>View profile</p></li>';
 
 			$return = sprintf(
 				$guide
-				,$a['headshot']['url']
-				,$a['first_name'].' '.$a['last_name']
-				,$a['title']
+				,$a
+				,$b['headshot']['url']
+				,$b['first_name'].' '.$b['last_name']
+				,$b['title']
 			);
 
 			unset($guide,$a);

@@ -60,6 +60,31 @@ if (function_exists('add_theme_support'))
     Functions
 \*------------------------------------*/
 
+
+// this file will house all custom redirects and query tags that we need to create
+
+// add custom query tags here
+function myplugin_rewrite_tag() {
+  add_rewrite_tag( '%show-bio%', '([^&]+)' );	// this is for the full bio details
+}
+add_action('init', 'myplugin_rewrite_tag', 10, 0);
+
+// add custom rewrite rules here
+function custom_rewrite_rule() {
+    add_rewrite_rule('^faculty-and-staff/([^/]*)?','index.php?page_id=120&show-bio=$matches[1]','top');  // full bio details
+}
+add_action('init', 'custom_rewrite_rule', 10, 0);
+
+
+
+
+
+
+
+
+
+
+
 // nudev navigation
 function nudev_nav()
 {
@@ -329,6 +354,7 @@ add_action('wp_enqueue_scripts', 'neudev_include_custom_jquery');
 
 
 
+
 function nudev_footer_scripts() {
 
    if ( is_page( 14 ) ) {//location page
@@ -338,6 +364,12 @@ function nudev_footer_scripts() {
      wp_enqueue_script('googlemap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDIi5IUYN3xySijRqfhNDikL-MhWbYARoQ&callback=initMap', array(), '1.0.0', true);
      wp_enqueue_script('googlemap');
    }
+
+   if(is_page_template('templates/template-staff.php')){
+     wp_register_script('magnificjs', get_template_directory_uri() . '/js/magnific.js', array(), '1.0.0');
+     wp_enqueue_script('magnificjs');
+   }
+
 
    wp_register_script('nudevscripts-min', get_template_directory_uri() . '/js/scripts-min.js',  array('jquery'), '1.0.0', true);
    wp_enqueue_script('nudevscripts-min');
@@ -358,10 +390,10 @@ Page Conditional Scripts
 function nudev_conditional_scripts(){
 
   // load magnific for the staff pages
-  if(is_page_template('templates/template-staff.php')){
-    wp_register_script('magnificjs', get_template_directory_uri() . '/js/magnific.js', array(), '1.0.0');
-    wp_enqueue_script('magnificjs');
-  }
+  // if(is_page_template('templates/template-staff.php')){
+  //   wp_register_script('magnificjs', get_template_directory_uri() . '/js/magnific.js', array(), '1.0.0');
+  //   wp_enqueue_script('magnificjs');
+  // }
 
 }
 
@@ -432,7 +464,7 @@ function nudev_styles(){
 
 
     // load the staff styles
-    if(is_page_template('templates/template-staff.php')){
+    if(is_page_template('templates/template-staff.php') || is_page_template('templates/template-staff-bio.php')){
       wp_register_style('staffcss', get_template_directory_uri() . '/css/staff.css', array(), '1.0');
       wp_enqueue_style('staffcss');
       wp_register_style('magnificcss', get_template_directory_uri() . '/css/magnific.css', array(), '1.0');

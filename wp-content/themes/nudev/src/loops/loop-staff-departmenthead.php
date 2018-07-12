@@ -24,12 +24,13 @@
 
       $res = query_posts($args)[0];
       $this->fields = get_fields($res->ID);
+      $this->fields['post_name'] = $res->post_name;
       unset($args,$res,$this->dept);
     }
 
     public function buildReturn():string{
 
-      $guide = '<div><h3>%s%s</h3><h4>%s</h4><p>%s</p><a href="#" title="Click here to read more">Read More</a></div><div style="background: url(%s);"></div>';
+      $guide = '<div><h3>%s%s</h3><h4>%s</h4><p>%s</p><a href="/faculty-and-staff/%s" title="Click here to read more" class="js__bio">Read More</a></div><div style="background: url(%s);"></div>';
 
       $return = sprintf(
         $guide
@@ -37,6 +38,7 @@
         ,(isset($this->fields['credentials']) && $this->fields['credentials'] != ''?', '.$this->fields['credentials']:'')
         ,$this->fields['title']
         ,$this->fields['short_bio']
+        ,$this->fields['post_name']
         ,$this->fields['headshot']['url']
       );
 

@@ -15,21 +15,28 @@
 
 
 
-		// this is to open bios for senior staff members
-		$("ul.seniorteam").on("click touchend",".js__bio",function(e){
-			e.preventDefault();
+		// if we are on the staff page, allow for some links to open full bio details in a lightbox
+		if($("#staff")){
 
-			var thisId = $(this).attr("id");
-			var content = $("div.biocontent#staff-"+thisId).html();
+			$(".js__bio").magnificPopup({
+	        // type: "iframe"
+					type: "ajax"
+	        ,closeOnContentClick: false
+	        ,closeOnBgClick: false
+	        ,enableEscapeKey: false
+	        ,verticalFit: true
+					,removalDelay: 300
+					,mainClass: 'mfp-fade'
+					// ,callbacks:{
+					//   beforeOpen: function() {
+					//     console.log('Start of popup initialization');
+					//   }
+					// }
+	    });
 
-			$.magnificPopup.open({
-				items: {
-					src: '<div class="popupbio">'+content+'</div>',
-					type: 'inline'
-				}
-			});
 
-		});
+
+		}
 
 
 

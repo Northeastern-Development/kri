@@ -1,6 +1,11 @@
 
 
 	</div>
+
+	<?php
+		if(!is_page_template('templates/template-staff-bio.php')){
+	?>
+
 			<footer>
 				<div id="sitefooter">
 					<div>
@@ -28,13 +33,17 @@
 					</div>
 				</div>
 
-			</footer>
-
-			<?php if(function_exists("wp_globalfooter")){wp_globalfooter();} ?>
+			</footer><?php if(function_exists("wp_globalfooter")){wp_globalfooter();} ?>
 
 
 
 		<?php wp_footer(); ?>
+
+		<?php
+
+			}
+
+		?>
 
 
  <script>

@@ -11,29 +11,36 @@
 
 
 
-div.popupbio{
-  background: rgba(0,0,0,1.0);
-  width: 60vw;
-  min-height: 50vh;
-  margin: auto;
-  color: rgba(255,255,255,1.0);
-  padding: ($gutter * 3) ($gutter * 3) ($gutter * 3) ($gutter * 3);
-  font-size: 1.8rem;
-  line-height: 3.35rem;
-  position: relative;
-  & > p.title{
-    border-bottom: solid rgba(48, 154, 168, 1.0) 1px;
-    padding: 0 0 10px 0;
-    font-size: 1.8rem;
-    line-height: 2.5rem;
-  }
-  & > p:not(.title){
-    font-size: 1.8rem;
-    line-height: 3.35rem;
-  }
-}
+// div.popupbio{
+//   background: rgba(0,0,0,1.0);
+//   width: 20vw;
+//   min-height: 50vh;
+//   margin: auto;
+//   color: rgba(255,255,255,1.0);
+//   padding: ($gutter * 3) ($gutter * 3) ($gutter * 3) ($gutter * 3);
+//   font-size: 1.8rem;
+//   line-height: 3.35rem;
+//   position: relative;
+//   & > p.title{
+//     border-bottom: solid rgba(48, 154, 168, 1.0) 1px;
+//     padding: 0 0 10px 0;
+//     font-size: 1.8rem;
+//     line-height: 2.5rem;
+//   }
+//   & > p:not(.title){
+//     font-size: 1.8rem;
+//     line-height: 3.35rem;
+//   }
+// }
+
+// .mfp-content{
+//   width: 70vw;
+//   height: 70vh;
+// }
 
 main#staff{
+
+  $columns: 5;
 
 
   section.departmenthead{
@@ -42,11 +49,10 @@ main#staff{
     & > div{
       width: 31vw;
       float: left;
-      // min-height: 250px;
       margin: 0 2vw 0 0;
       &:nth-of-type(2){
-        width: (($content_width - ($gutter * 4)) / 5);
-        height: (($content_width - ($gutter * 4)) / 5);
+        width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+        height: (($content_width - ($gutter * ($columns - 1))) / $columns);
         margin: 0 0 0 0;
         background: rgba(0,0,0,1.0);
         background-position: center center !important;
@@ -60,7 +66,7 @@ main#staff{
 
   section.stafflist{
 
-    $columns: 3;
+
 
     width: $wrapper-width;
     margin: 0 auto 0 auto;
@@ -88,7 +94,7 @@ main#staff{
         list-style: none;
         list-style-type: none;
         & > li{
-          $width: (($content_width - ($gutter * 4)) / 5);
+          $width: (($content_width - ($gutter * ($columns - 1))) / $columns);
           width: $width;
           height: auto;
           float: left;
@@ -145,13 +151,44 @@ main#staff{
           //     }
           //   }
           // }
-          &:nth-child(5n+5){
+          &:nth-child(#{$columns}n+#{$columns}){
             margin: 0 0 $gutter 0;
           }
         }
       }
     }
   }
+}
+
+
+
+
+
+#staffbio{
+  background: rgba(255,255,255,1.0);
+  margin: 0 10vw 0 10vw;
+  padding-bottom: 0;
+  padding: $gutter 0 $gutter 0;
+
+  & > div.contact{
+    clear: both;
+    overflow: hidden;
+    & > div{
+      float: left;
+      width: 34vw;
+      margin: 0 $gutter 0 0;
+      &:nth-of-type(2){
+        width: 15vw;
+        height: 15vw;
+        margin: 0 0 0 0;
+        background: rgba(0,0,0,1.0);
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+    }
+  }
+
 }
 
 
