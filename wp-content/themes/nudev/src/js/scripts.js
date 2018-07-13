@@ -16,7 +16,7 @@
 
 
 		// if we are on the staff page, allow for some links to open full bio details in a lightbox
-		if($("#staff")){
+		if($("#staff").length){
 
 			$(".js__bio").magnificPopup({
 	        // type: "iframe"

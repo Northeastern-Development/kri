@@ -519,5 +519,5 @@ if (get_option('nu_loader_plugin_do_activation_redirect', false)) {
 
 // let's check the plugin to make sure that we have everything we need
 if(!is_admin()){
-  add_action('wp_footer','nu_check_plugin');
+  // add_action('wp_footer','nu_check_plugin');
 }
