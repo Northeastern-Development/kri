@@ -17,8 +17,8 @@
 		<div>
 			<h2><?=$fields['first_name'].' '.$fields['last_name'].(isset($fields['credentials']) && $fields['credentials'] != ""?', '.$fields['credentials']:'')?></h2>
 			<?=(isset($fields['title']) && $fields['title'] != ""?'<h3>'.$fields['title'].'</h3>':'')?>
-			<?=(isset($fields['email']) && $fields['email'] != ""?'<h4>'.$fields['email'].'</h4>':'')?>
-			<?=(isset($fields['phone']) && $fields['phone'] != ""?'<h4>'.$fields['phone'].'</h4>':'')?>
+			<?=(isset($fields['email']) && $fields['email'] != ""?'<h4><a href="mailto:'.$fields['email'].'" title="Send an email" class="email">'.$fields['email'].'</a></h4>':'')?>
+			<?=(isset($fields['phone']) && $fields['phone'] != ""?'<h4><a href="tel:'.$fields['phone'].'" title="Call" class="phone">'.$fields['phone'].'</a></h4>':'')?>
 		</div>
 		<div style="background: url(<?=$fields['headshot']['url']?>);"></div>
 	</div>

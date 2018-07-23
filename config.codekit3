@@ -23,45 +23,6 @@
 		"oAP": "\/.htaccess",
 		"oF": 0
 		},
-	"\/_JUNK\/.htaccess.171016174032.orig": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/_JUNK\/.htaccess.171016174032.orig",
-		"oF": 0
-		},
-	"\/_JUNK\/__wp-config.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/_JUNK\/__wp-config.php",
-		"oF": 0
-		},
-	"\/_JUNK\/README.md": {
-		"cB": 0,
-		"cS": 0,
-		"eF": 1,
-		"eL": 1,
-		"ema": 1,
-		"eSQ": 1,
-		"ft": 4096,
-		"oA": 0,
-		"oAP": "\/_JUNK\/README.html",
-		"oF": 0,
-		"oFM": 0,
-		"oS": 0,
-		"pHT": 0,
-		"pME": 1,
-		"rFN": 0,
-		"uCM": 0
-		},
-	"\/_JUNK\/web.config.171016174032.orig": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/_JUNK\/web.config.171016174032.orig",
-		"oF": 0
-		},
 	"\/index.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -17464,7 +17425,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"\/wp-content\/plugins\/wordpress-seo\/images\/banner\/SEO-for-beginners-training.png": {
+	"\/wp-content\/plugins\/wordpress-seo\/images\/banner\/seo-for-beginners-training.png": {
 		"ft": 32768,
 		"iS": 90371,
 		"oA": 0,
@@ -23841,6 +23802,16 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"\/wp-content\/themes\/nudev\/src\/css\/magnific-min.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/magnific-min-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/wp-content\/themes\/nudev\/src\/css\/magnific.css": {
 		"aP": 1,
 		"bl": 0,
@@ -25322,6 +25293,13 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/wp-content\/themes\/nudev\/src\/templates\/template-location.php",
+		"oF": 0
+		},
+	"\/wp-content\/themes\/nudev\/src\/templates\/template-staff-bio.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/templates\/template-staff-bio.php",
 		"oF": 0
 		},
 	"\/wp-content\/themes\/nudev\/src\/templates\/template-staff.php": {

@@ -50,7 +50,7 @@
 
 		public function buildRecord($a='',$b=''):string{
 
-			$guide = '<li><a href="%s" title="Click to view profile" class="js__bio"><div style="background: url(%s);"></div><h3>%s</h3><h4>%s</h4><p>View profile</p></li>';
+			$guide = '<li><a href="%s" title="Click to view profile" class="js__bio"><div style="background: url(%s);"></div><h3>%s</h3><h4>%s</h4><span>View profile</span></a></li>';
 
 			$return = sprintf(
 				$guide

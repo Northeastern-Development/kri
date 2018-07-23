@@ -23,6 +23,34 @@ main#staff{
       width: 31vw;
       float: left;
       margin: 0 2vw 0 0;
+      & > h3{
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+      }
+      & > h4{
+        font-size: 2.0rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+        text-transform: none;
+        margin: 10px 0 10px 0;
+        &:before{
+          display: none;
+        }
+      }
+      & > a{
+        border-bottom: 1px solid #cc0000;
+        // padding: 0 0 4px 0;
+        &:before{
+          display: block;
+          float: left;
+          font-family: 'Material Icons';
+          content: '\e5c8';
+          padding: 4px 10px 0 0;
+          border-bottom: 1px solid #cc0000;
+          line-height: 2.2rem;
+        }
+      }
       &:nth-of-type(2){
         width: (($content_width - ($gutter * ($columns - 1))) / $columns);
         height: (($content_width - ($gutter * ($columns - 1))) / $columns);
@@ -46,7 +74,6 @@ main#staff{
     overflow: hidden;
     padding: 0 0 ($gutter * 3) 0;
     & > div{
-      // background: red;
       overflow: hidden;
       width: $content_width;
       margin: 0 auto 0 auto;
@@ -54,7 +81,7 @@ main#staff{
       text-align: center;
       & > h2{
         width: $content_width;
-        border-bottom: solid rgba(48, 154, 168, 1.0) 1px;
+        border-bottom: none;
         margin: 0 auto 0 auto;
         font-size: 3.4rem;
         letter-spacing: 2px;
@@ -71,10 +98,52 @@ main#staff{
           width: $width;
           height: auto;
           float: left;
-          // background: #efefef;
           margin: 0 $gutter $gutter 0;
           position: relative;
           & > a{
+            clear: both;
+            &:hover{
+              color: rgba(0,0,0,1.0);
+              & > span{
+                color: #cc0000;
+              }
+            }
+            & > h3{
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 700;
+              text-align: left;
+              margin: 10px 0 0 0;
+            }
+            & > h4{
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 300;
+              text-transform: none;
+              text-align: left;
+              margin: 0 0 0 0;
+              &:before{
+                display: none;
+              }
+            }
+            & > span{
+              float: left;
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 300;
+              text-transform: none;
+              text-align: left;
+              font-family: "Lato", sans-serif, "Material Icons";
+              // border-bottom: 1px solid #cc0000;
+              margin: 0 0 10px 0;
+              &:before{
+                content: '\E5D4';
+                padding: 5px 5px 0 5px;
+                display: block;
+                line-height: 1.6rem;
+                float: left;
+              }
+            }
             & > div{
               width: $width;
               height: $width;
@@ -84,46 +153,6 @@ main#staff{
               background-size: cover !important;
             }
           }
-          // & > div{
-          //   background: rgba(0,0,0,0.8);
-          //   position: absolute;
-          //   bottom: 0;
-          //   margin: 0 10px 10px 10px;
-          //   width: calc(100% - 20px);
-          //   padding: 10px 20px 10px 20px;
-          //   overflow: hidden;
-          //   min-height: 100px;
-          //   color: rgba(255,255,255,1.0);
-          //   & > p{
-          //     line-height: 2.5rem;
-          //     text-align: left;
-          //     width: 90%;
-          //     margin: 0 0 0 0;
-          //     font-size: 1.5rem;
-          //   }
-          //   & > div.biocontent{
-          //     display: none;
-          //     & > p{
-          //       color: rgba(204, 0, 0, 1.0);
-          //     }
-          //   }
-          //   & > a{
-          //     position: absolute;
-          //     right: 20px;
-          //     top: 8px;
-          //     text-align: left;
-          //     color: rgba(255,255,255,1.0);
-          //     font-weight: 200;
-          //     border: solid rgba(255,255,255,1.0) 1px;
-          //     padding: 5px 10px 5px 10px;
-          //     text-transform: uppercase;
-          //     font-size: 1.25rem;
-          //     margin: 10px 0 0 0;
-          //     &:hover{
-          //       color: rgba(204, 0, 0, 1.0);
-          //     }
-          //   }
-          // }
           &:nth-child(#{$columns}n+#{$columns}){
             margin: 0 0 $gutter 0;
           }
@@ -139,17 +168,71 @@ main#staff{
 
 #staffbio{
   background: rgba(255,255,255,1.0);
-  margin: 0 10vw 0 10vw;
+  margin: 10px 10vw 0 10vw;
   padding-bottom: 0;
   padding: $gutter 0 $gutter 0;
 
   & > div.contact{
     clear: both;
     overflow: hidden;
+
     & > div{
       float: left;
       width: 34vw;
       margin: 0 $gutter 0 0;
+      & > h2{
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+        margin: 10px 0 10px 0;
+      }
+      & > h3{
+        font-size: 2.0rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+        text-transform: none;
+        margin: 0 0 10px 0;
+        &:before{
+          display: none;
+        }
+      }
+      & > h4{
+        font-size: 1.6rem;
+        line-height: 3rem;
+        font-weight: 300;
+        text-transform: none;
+        margin: 0 0 10px 0;
+        clear: both;
+        &:before{
+          display: none;
+        }
+        & > a{
+          border-bottom: 1px solid #cc0000;
+          &.email:before,
+          &.phone:before{
+            width: auto;
+            background: none;
+            font-family: 'Material Icons';
+            padding: 0 10px 0 0;
+            margin: 0 0 0 0;
+            display: block;
+            float: left;
+            line-height: 3rem;
+            height: 26px;
+            border-bottom: 1px solid #cc0000;
+          }
+          &.email{
+            &:before{
+              content: '\e0be';
+            }
+          }
+          &.phone{
+            &:before{
+              content: '\e551'
+            }
+          }
+        }
+      }
       &:nth-of-type(2){
         width: 15vw;
         height: 15vw;
