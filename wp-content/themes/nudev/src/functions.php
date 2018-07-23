@@ -1060,39 +1060,141 @@ function create_post_type_nudev()
         ) // Add Category and Post Tags support
     ));
 
-    // register_taxonomy_for_object_type('category', 'classnotes'); // Register Taxonomies for Category
-    // register_taxonomy_for_object_type('post_tag', 'classnotes');
-    // register_post_type('classnotes', // Register Custom Post Type
-    //     array(
-    //     'labels' => array(
-    //         'name' => __('Class Notes', 'nudev'), // Rename these to suit
-    //         'singular_name' => __('Class Notes', 'nudev'),
-    //         'add_new' => __('Add New', 'nudev'),
-    //         'add_new_item' => __('Add New Class Note', 'nudev'),
-    //         'edit' => __('Edit', 'nudev'),
-    //         'edit_item' => __('Edit Class Note', 'nudev'),
-    //         'new_item' => __('New Class Note', 'nudev'),
-    //         'view' => __('View Class Note', 'nudev'),
-    //         'view_item' => __('View Class Note', 'nudev'),
-    //         'search_items' => __('Search Class Notes', 'nudev'),
-    //         'not_found' => __('No Class Notes found', 'nudev'),
-    //         'not_found_in_trash' => __('No Class Notes found in Trash', 'nudev')
-    //     ),
-    //     'public' => true,
-    //     'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-    //     'has_archive' => true,
-    //     'supports' => array(
-    //         'title',
-    //         'editor',
-    //         'excerpt',
-    //         'thumbnail'
-    //     ), // Go to Dashboard Custom nudev post for supports
-    //     'can_export' => true, // Allows export in Tools > Export
-    //     'taxonomies' => array(
-    //         'post_tag',
-    //         'category'
-    //     ) // Add Category and Post Tags support
-    // ));
+
+    register_taxonomy_for_object_type('category', 'newsandevents'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('post_tag', 'newsandevents');
+    register_post_type('newsandevents', // Register Custom Post Type
+        array(
+        'labels' => array(
+            'name' => __('News and Events', 'nudev'), // Rename these to suit
+            'singular_name' => __('News and Events', 'nudev'),
+            'add_new' => __('Add New', 'nudev'),
+            'add_new_item' => __('Add New News and Events', 'nudev'),
+            'edit' => __('Edit', 'nudev'),
+            'edit_item' => __('Edit News and Events', 'nudev'),
+            'new_item' => __('New News and Events', 'nudev'),
+            'view' => __('View News and Events', 'nudev'),
+            'view_item' => __('View News and Events', 'nudev'),
+            'search_items' => __('Search News and Events', 'nudev'),
+            'not_found' => __('No News and Events found', 'nudev'),
+            'not_found_in_trash' => __('No News and Events found in Trash', 'nudev')
+        ),
+        'public' => true,
+        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'has_archive' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail'
+        ), // Go to Dashboard Custom nudev post for supports
+        'can_export' => true, // Allows export in Tools > Export
+        'taxonomies' => array(
+            'post_tag',
+            'category'
+        ) // Add Category and Post Tags support
+    ));
+
+
+    // Add columns to administration post listing
+    function add_newsandevents_acf_columns($columns){
+      $slice1 = array_slice($columns, 0, 2, true);
+      $slice2 = array_slice($columns, 2, count($columns), true);
+      return array_merge($slice1,array('type' => __ ( 'Type' )),array('featured' => __ ( 'Featured' )),$slice2);
+    }
+
+    function newsandevents_custom_column($column, $post_id){
+      switch($column){
+        case 'type':
+          echo ucwords(get_post_meta($post_id,'type',true));
+          break;
+        case 'featured':
+          if(get_post_meta($post_id,'featured',true) == 1){
+            echo "Yes";
+          }else{
+            echo "";
+          }
+          break;
+      }
+    }
+
+    // add filter options
+    function newsandevents_admin_posts_filter_restrict_manage_posts(){
+      global $typenow;
+      $type = 'newsandevents';
+
+      if ($typenow == $type){
+
+
+        $current_v = isset($_GET['ADMIN_FILTER_FIELD_VALUE'])? $_GET['ADMIN_FILTER_FIELD_VALUE']:'';
+
+        $guide = '<option value="%s"%s>%s</option>';
+
+        // hardcoded values for now, there is an issue retrieving them again after the first filter
+        $values = array(
+           'News' => 'News'
+          ,'Event' => 'Event'
+        );
+  ?>
+        <select name="ADMIN_FILTER_FIELD_VALUE"><option value=""><?php _e('Filter By Type', 'type'); ?></option>
+
+  <?php
+
+
+
+        foreach ($values as $label => $value){
+
+          printf(
+             $guide
+            ,$value
+            ,$value == $current_v? ' selected="selected"':''
+            ,$label
+          );
+        }
+  ?>
+        </select>
+  <?php
+      }
+    }
+
+
+    function newsandevents_posts_filter( $query ){
+      global $pagenow;
+      global $typenow;
+      $type = 'newsandevents';
+      if ( $typenow == $type && is_admin() && $pagenow=='edit.php' && isset($_GET['ADMIN_FILTER_FIELD_VALUE']) && $_GET['ADMIN_FILTER_FIELD_VALUE'] != ''){
+
+        // this is so that we can fuzzy find a match even if the profile is in more than 1 dept.
+        $query->set('meta_query',array(
+          array(
+            'key' => 'type'
+            ,'value' => $_GET['ADMIN_FILTER_FIELD_VALUE']
+            ,'compare' => 'LIKE'
+          )
+        ));
+
+      }
+    }
+
+    function newsandevents_sortable_columns( $columns ) {
+      $columns['featured'] = 'featured';
+      // $columns['acf_field'] = 'acf_field';
+
+      return $columns;
+    }
+
+    add_filter('manage_newsandevents_posts_columns','add_newsandevents_acf_columns');
+    add_action('manage_newsandevents_posts_custom_column','newsandevents_custom_column',10,2);
+
+    add_action( 'restrict_manage_posts', 'newsandevents_admin_posts_filter_restrict_manage_posts' );
+    add_filter( 'parse_query', 'newsandevents_posts_filter' );
+
+    add_filter( 'manage_edit-newsandevents_sortable_columns', 'newsandevents_sortable_columns' );
+
+
+
+
+
 }
 
 /*------------------------------------*\

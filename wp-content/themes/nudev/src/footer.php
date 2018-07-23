@@ -33,7 +33,8 @@
 					</div>
 				</div>
 
-			</footer><?php if(function_exists("wp_globalfooter")){wp_globalfooter();} ?>
+			</footer><?php if(function_exists("NUML_globalfooter")){NUML_globalfooter();} ?>
+
 
 
 
