@@ -66,12 +66,14 @@ if (function_exists('add_theme_support'))
 // add custom query tags here
 function myplugin_rewrite_tag() {
   add_rewrite_tag( '%show-bio%', '([^&]+)' );	// this is for the full bio details
+  add_rewrite_tag( '%show-article%', '([^&]+)' );	// this is for the news article details
 }
 add_action('init', 'myplugin_rewrite_tag', 10, 0);
 
 // add custom rewrite rules here
 function custom_rewrite_rule() {
     add_rewrite_rule('^faculty-and-staff/([^/]*)?','index.php?page_id=120&show-bio=$matches[1]','top');  // full bio details
+    add_rewrite_rule('^news/article/([^/]*)?','index.php?page_id=157&show-article=$matches[1]','top');  // full news article details
 }
 add_action('init', 'custom_rewrite_rule', 10, 0);
 
@@ -469,6 +471,15 @@ function nudev_styles(){
       wp_enqueue_style('staffcss');
       wp_register_style('magnificcss', get_template_directory_uri() . '/css/magnific.css', array(), '1.0');
       wp_enqueue_style('magnificcss');
+    }
+
+
+    // load the news styles
+    if(is_page_template('templates/template-news-archive.php') || is_page_template('templates/template-news-item.php')){
+      wp_register_style('newscss', get_template_directory_uri() . '/css/news.css', array(), '1.0');
+      wp_enqueue_style('newscss');
+      // wp_register_style('magnificcss', get_template_directory_uri() . '/css/magnific.css', array(), '1.0');
+      // wp_enqueue_style('magnificcss');
     }
 
 

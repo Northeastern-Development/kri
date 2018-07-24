@@ -1,0 +1,98 @@
+/*
+ * Marketing
+ */
+/**
+ * modules/variables
+ * ---
+ */
+/**
+ * Typography
+ */
+/**
+ * Colors
+ */
+/**
+ * Grid
+ */
+/* These are variables for the header */
+/* These are variables for the main navigation */
+/**
+ * modules/mixins
+ * ---
+ */
+/**
+ * modules/fonts
+ * ---
+ * Declare fonts here
+ */
+/*
+@font-face {
+  font-family: "Font-Name";
+  src: url("fonts/font-name.eot");
+  src: url("fonts/font-name.eot?#iefix") format("embedded-opentype"),
+    url("fonts/font-name.woff") format("woff"),
+    url("fonts/font-name.ttf") format("truetype"),
+    url("fonts/font-name.svg#font-name") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+*/
+main#news section.newslist > div {
+  width: 59vw;
+  margin: 0 auto 0 auto; }
+  main#news section.newslist > div > ul {
+    list-style: none;
+    list-style-type: none; }
+    main#news section.newslist > div > ul > li {
+      margin: 0 0 30px 0;
+      clear: both;
+      overflow: hidden; }
+      main#news section.newslist > div > ul > li > div {
+        width: 50%;
+        min-height: 300px;
+        overflow: hidden;
+        float: left; }
+        main#news section.newslist > div > ul > li > div > h4 {
+          font-size: 1.2rem; }
+          main#news section.newslist > div > ul > li > div > h4:before {
+            display: none; }
+        main#news section.newslist > div > ul > li > div:nth-of-type(1) {
+          margin: 0 2% 0 0;
+          width: 48%;
+          background: black;
+          background-position: center center !important;
+          background-repeat: no-repeat !important;
+          background-size: cover !important; }
+
+main#news section.breadcrumbs {
+  width: 59vw;
+  margin: 200px auto 0 auto; }
+
+main#news section.newsarticle > div {
+  width: 59vw;
+  margin: 0 auto 0 auto; }
+  main#news section.newsarticle > div > div.img {
+    width: 100%;
+    height: 400px;
+    background: black;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important; }
+  main#news section.newsarticle > div blockquote {
+    width: 300px;
+    overflow: hidden;
+    font-size: 6rem;
+    line-height: 7rem;
+    word-wrap: break-word;
+    float: left;
+    border-right: solid #cc0000 10px;
+    padding: 0 20px 0 0;
+    margin: 0 20px 10px 0; }
+    main#news section.newsarticle > div blockquote.right {
+      float: right;
+      border-left: solid #cc0000 10px;
+      border-right: none;
+      padding: 0 0 0 20px;
+      margin: 0 0 10px 20px; }
+  main#news section.newsarticle > div a {
+    border-bottom: solid #cc0000 1px; }

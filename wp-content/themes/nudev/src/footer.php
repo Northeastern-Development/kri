@@ -26,7 +26,8 @@
 								<a href="<?=home_url()?>/convening" title="Click here to learn more about convening"><span>Convening</span></a><br />
 								<a href="<?=home_url()?>/location" title="Click here to learn more about the location"><span>Location</span></a><br />
 								<a href="<?=home_url()?>/employment" title="Click here to learn more about employment opportunities"><span>Employment</span></a><br />
-								<a href="<?=home_url()?>/staff" title="Click here to learn more about our staff"><span>Staff</span></a><br />
+								<a href="<?=home_url()?>/faculty-and-staff" title="Click here to learn more about our staff"><span>Staff</span></a><br />
+								<a href="<?=home_url()?>/news" title="Click here to read recent news items"><span>News</span></a><br />
 							</li>
 							<li><a href="//www.northeastern.edu/kostas/wp-content/uploads/kri_brochure.pdf" title="Click here to download our brochure" class="download hvr-shutter-out-horizontal" target="_blank">&#xf019; Brochure</a></li>
 						</ul>
