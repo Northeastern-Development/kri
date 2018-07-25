@@ -16,12 +16,16 @@
 class NUModuleLoader{
 
   var $resourcesUrl
+      ,$brandLibrary
       ,$activeComponentSource;
 
   // initialize
   function __construct(){
 
-    $this->resourcesUrl = array('https://www.northeastern.edu');
+    // let's read in the remote config JSON file
+    $this->brandLibrary = json_decode(wp_remote_get('https://brand.northeastern.edu/global/components/config/library.json')['body']);
+
+    $this->resourcesUrl = array($this->brandLibrary->config->sourceurl);
 
     if(is_admin()){ // this is a back-end page request only (so it can be a little slower)
       // check the page templates and other resources to make sure that we have everything that we need in place
