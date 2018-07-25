@@ -15,25 +15,29 @@
 
 class NUModuleLoader{
 
-  var $resourcesUrl;
+  var $resourcesUrl
+      ,$activeComponentSource;
 
   // initialize
   function __construct(){
 
     $this->resourcesUrl = array('https://www.northeastern.edu');
 
-    if(is_admin()){ // this is a back-end page request (so it can be a little slower)
+    if(is_admin()){ // this is a back-end page request only (so it can be a little slower)
       // check the page templates and other resources to make sure that we have everything that we need in place
       if(null !== get_option('global_header') && get_option('global_header') == 'on'){
-        $this->check_customhook_header();
+        $this->checkCustomHook('/header.php','?><header','<header','<?php if(function_exists("NUML_globalheader")){NUML_globalheader();} ?><header');
       }
       if(null !== get_option('global_footer') && get_option('global_footer') == 'on'){
-        $this->check_customhook_footer();
+
+        // require_once('components/footer.php');
+
+        $this->checkCustomHook('/footer.php','</footer><?php','</footer>','</footer><?php if(function_exists("NUML_globalfooter")){NUML_globalfooter();} ?>');
       }
 
       $this->admin_tools(); // add the tools to manage settings
 
-    }else if(!is_admin()){ // this is a front-end request
+    }else if(!is_admin()){ // this is a front-end request, so build out any front-end components needed
       $this->frontend();
     }
 
@@ -44,40 +48,21 @@ class NUModuleLoader{
 
 
   // check to see if the requested module has already been initialized
-  function check_customhook_header(){
+  private function checkCustomHook($a='',$b='',$c='',$d=''):void{
 
-    $p = get_template_directory().'/header.php';
+    $p = get_template_directory().$a;
     $f = fopen($p, "r") or die('Unable to open file!');
-    $d = fread($f,filesize($p));
+    $data = fread($f,filesize($p));
     fclose($f);
 
-    if(!strpos($d,' ?><header')){ // we need to update the template
-      $d = str_replace('<header','<?php if(function_exists("NUML_globalheader")){NUML_globalheader();} ?><header',$d);
-      $f = fopen($p, "w+") or die('Unable to edit header file!');
-      fwrite($f,$d);
+    if(!strpos($data,$b)){ // we need to update the template
+      $data = str_replace($c,$d,$data);
+      $f = fopen($p, "w+") or die('ERROR: Unable to add custom hook');
+      fwrite($f,$data);
       fclose($f);
     }
 
-    unset($p,$f,$d);
-
-  }
-
-  function check_customhook_footer(){
-
-    $p = get_template_directory().'/footer.php';
-    $f = fopen($p, "r") or die('Unable to open file!');
-    $d = fread($f,filesize($p));
-    fclose($f);
-
-    if(!strpos($d,'footer><?php')){ // we need to update the template
-      $d = str_replace('</footer>','</footer><?php if(function_exists("NUML_globalfooter")){NUML_globalfooter();} ?>',$d);
-      $f = fopen($p, "w+") or die('Unable to edit footer file!');
-      fwrite($f,$d);
-      fclose($f);
-    }
-
-    unset($p,$f,$d);
-
+    unset($p,$f,$d,$a,$b,$c,$data);
   }
 
 
@@ -85,13 +70,13 @@ class NUModuleLoader{
 
 
   // this function gets run when on the admin pages
-  function admin_tools():void{
+  private function admin_tools():void{
 
     add_action( 'admin_menu','nuloader_add_admin_menu'); // adds menu item to wp dashboard
     add_action( 'admin_init','register_mysettings');
 
     function nuloader_add_admin_menu():void{
-      add_menu_page( 'NU Loader Settings', 'NU Loader', 'manage_options', 'nu_loader', 'nuloader_options_page', plugin_dir_url( __FILE__ ) . '_ui/n.png' );
+      add_menu_page( 'NU Loader Settings', 'NU Loader', 'manage_options', 'nu_loader', 'settings_page', plugin_dir_url( __FILE__ ) . '_ui/n.png' );
     }
 
     function register_mysettings():void{ // whitelist options
@@ -100,53 +85,14 @@ class NUModuleLoader{
       register_setting( 'nu-loader-settings', 'global_footer' );
     }
 
-    function nuloader_options_page():void{
-     ?>
-       <div class="wrap">
-         <?php settings_errors(); ?>
-         <h1>NU Loader Settings</h1><br>
-         <h3>Check off what you'd like to load into your site below.</h3>
-         <form action="options.php" method="post">
-           <?php
-           settings_fields( 'nu-loader-settings' );
-           do_settings_sections( 'nuloader_options_page' );
-           ?>
-           <table class="form-table">
-             <tr valign="top">
-               <th scope="row">Assets Needed</th>
-               <td valign="top">
-                 <label>
-                   <input type="checkbox" name="global_material_icons" <?php echo esc_attr( get_option('global_material_icons') ) == 'on' ? 'checked="checked"' : ''; ?> />Global Google Material Icons?
-                 </label><br/>
-                 <p class="description" id="tagline-description">The <strong>Global Northeastern Header</strong> requires Google Material Icons.  If your theme is not loading them please check the box above.</p>
-               </td>
-             </tr>
-             <tr valign="top">
-               <th scope="row">Loader Options</th>
-               <td valign="top">
-                 <label>
-                   <input type="checkbox" name="global_header" <?php echo esc_attr( get_option('global_header') ) == 'on' ? 'checked="checked"' : ''; ?> />Global Northeastern Header?
-                 </label><br/>
-                 <label>
-                   <input type="checkbox" name="global_footer" <?php echo esc_attr( get_option('global_footer') ) == 'on' ? 'checked="checked"' : ''; ?> />Global Northeastern Footer?
-                 </label>
-               </td>
-             </tr>
-             <tr>
-               <td><?php submit_button(); ?></td>
-             </tr>
-           </table>
-           <h2>Need Help?</h2>
-           <div id="nu_settings-help">
-             If you need help or something isn't working please <a href="mailto:nudev@northeastern.edu?subject=NU Loader Plugin Help">contact us</a>.
-           </div>
-         </form>
-       </div>
-     <?php
+    function settings_page():void{
+
+      include('interfaces/settings.php'); // call in the settings interface
+
     }
   }
 
-  function frontend():void{
+  private function frontend():void{
 
     // do we want to add in material icons?
     if(null !== get_option('global_material_icons') && get_option('global_material_icons') == 'on'){
@@ -168,20 +114,14 @@ class NUModuleLoader{
 
 
   // build out the footer to be shown on the site
-  public function build_footer(){
+  public function build_footer():void{
 
     if(null !== get_option('global_footer') && get_option('global_footer') == 'on'){
-
-      $curl = curl_init($this->resourcesUrl[0].'/resources/includes/?r=footer');
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-      echo '<div id="nu__global-footer">'.curl_exec($curl).'</div>';
-      curl_close($curl);
-
-      unset($curl);
-
+      echo '<div id="nu__global-footer">'.$this->getRemoteContent('/resources/includes/?r=footer').'</div>';
     }
 
   }
+
 
   // add the footer styles to the header
   function nu_footerstyles():void{
@@ -189,31 +129,49 @@ class NUModuleLoader{
   }
 
 
+
+
+
   // build out the header to be shown on the site
-  public function build_header(){
+  public function build_header():void{
 
     if(null !== get_option('global_header') && get_option('global_header') == 'on'){
-
-      $curl = curl_init($this->resourcesUrl[0].'/resources/components/?return=main-menu');
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-      echo '<div id="nu__globalheader">'.curl_exec($curl).'</div>';
-      curl_close($curl);
-
-      unset($curl);
-
+      echo '<div id="nu__globalheader">'.$this->getRemoteContent('/resources/components/?return=main-menu').'</div>';
     }
 
   }
+
+
+
+
+
+  // this function performs the actual remote content request and returns only the body value
+  private function getRemoteContent($a=''):string{
+    $return = wp_remote_get($this->resourcesUrl[0].$a);
+    if(!is_wp_error($return['body'])){
+      return $return['body'];
+    }else{
+      return 'ERROR: the remote content could not be returned.';
+    }
+  }
+
+
+
+
 
   // add in the JS for the global header
   function nu_scripts():void{
    echo '<script src="'.$this->resourcesUrl[0].'/nuglobalutils/common/js/navigation-min.js"></script>';
   }
 
+
+  // add in the CSS for the header
   function nu_headerstyles():void{
     echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/utilitynav.css"  />';
   }
 
+
+  // add in the material icons CSS
   function nu_materialicons():void{
     echo '<link  rel="stylesheet" id="global-font-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/material-icons.css"/>';
   }
