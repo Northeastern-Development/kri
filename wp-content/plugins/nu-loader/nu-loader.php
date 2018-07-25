@@ -48,7 +48,7 @@ class NUModuleLoader{
 
 
   // check to see if the requested module has already been initialized
-  private function checkCustomHook($a='',$b='',$c='',$d=''):void{
+  private function checkCustomHook($a='',$b='',$c='',$d=''){
 
     $p = get_template_directory().$a;
     $f = fopen($p, "r") or die('Unable to open file!');
@@ -70,29 +70,29 @@ class NUModuleLoader{
 
 
   // this function gets run when on the admin pages
-  private function admin_tools():void{
+  private function admin_tools(){
 
     add_action( 'admin_menu','nuloader_add_admin_menu'); // adds menu item to wp dashboard
     add_action( 'admin_init','register_mysettings');
 
-    function nuloader_add_admin_menu():void{
+    function nuloader_add_admin_menu(){
       add_menu_page( 'NU Loader Settings', 'NU Loader', 'manage_options', 'nu_loader', 'settings_page', plugin_dir_url( __FILE__ ) . '_ui/n.png' );
     }
 
-    function register_mysettings():void{ // whitelist options
+    function register_mysettings(){ // whitelist options
       register_setting( 'nu-loader-settings', 'global_material_icons' );
       register_setting( 'nu-loader-settings', 'global_header' );
       register_setting( 'nu-loader-settings', 'global_footer' );
     }
 
-    function settings_page():void{
+    function settings_page(){
 
       include('interfaces/settings.php'); // call in the settings interface
 
     }
   }
 
-  private function frontend():void{
+  private function frontend(){
 
     // do we want to add in material icons?
     if(null !== get_option('global_material_icons') && get_option('global_material_icons') == 'on'){
@@ -114,7 +114,7 @@ class NUModuleLoader{
 
 
   // build out the footer to be shown on the site
-  public function build_footer():void{
+  public function build_footer(){
 
     if(null !== get_option('global_footer') && get_option('global_footer') == 'on'){
       echo '<div id="nu__global-footer">'.$this->getRemoteContent('/resources/includes/?r=footer').'</div>';
@@ -124,7 +124,7 @@ class NUModuleLoader{
 
 
   // add the footer styles to the header
-  function nu_footerstyles():void{
+  function nu_footerstyles(){
     echo '<link  rel="stylesheet" id="global-footer-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/footer.css" /> ';
   }
 
@@ -133,7 +133,7 @@ class NUModuleLoader{
 
 
   // build out the header to be shown on the site
-  public function build_header():void{
+  public function build_header(){
 
     if(null !== get_option('global_header') && get_option('global_header') == 'on'){
       echo '<div id="nu__globalheader">'.$this->getRemoteContent('/resources/components/?return=main-menu').'</div>';
@@ -160,19 +160,19 @@ class NUModuleLoader{
 
 
   // add in the JS for the global header
-  function nu_scripts():void{
+  function nu_scripts(){
    echo '<script src="'.$this->resourcesUrl[0].'/nuglobalutils/common/js/navigation-min.js"></script>';
   }
 
 
   // add in the CSS for the header
-  function nu_headerstyles():void{
+  function nu_headerstyles(){
     echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/utilitynav.css"  />';
   }
 
 
   // add in the material icons CSS
-  function nu_materialicons():void{
+  function nu_materialicons(){
     echo '<link  rel="stylesheet" id="global-font-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/material-icons.css"/>';
   }
 

@@ -16,7 +16,7 @@
 			$this->pagination = $this->paginate();
 		}
 
-		function getData():void{
+		function getData(){
 
 			$args = array(
 				"post_type" => "newsandevents"
