@@ -76,8 +76,11 @@ class NUModuleLoader{
   // this function gets run when on the admin pages
   private function admin_tools(){
 
+    register_activation_hook(__FILE__, 'nu_loader_plugin_activate');
+
     add_action( 'admin_menu','nuloader_add_admin_menu'); // adds menu item to wp dashboard
     add_action( 'admin_init','register_mysettings');
+    add_action('admin_init', 'nu_loader_plugin_redirect');
 
     function nuloader_add_admin_menu(){
       add_menu_page( 'NU Loader Settings', 'NU Loader', 'manage_options', 'nu_loader', 'settings_page', plugin_dir_url( __FILE__ ) . '_ui/n.png' );
@@ -90,11 +93,23 @@ class NUModuleLoader{
     }
 
     function settings_page(){
-
       include('interfaces/settings.php'); // call in the settings interface
+    }
 
+    function nu_loader_plugin_activate(){
+      add_option('nu_loader_plugin_do_activation_redirect', true);
+    }
+
+    function nu_loader_plugin_redirect(){
+      if(get_option('nu_loader_plugin_do_activation_redirect', false)){
+        delete_option('nu_loader_plugin_do_activation_redirect');
+        if(!isset($_GET['activate-multi'])){
+          wp_redirect("admin.php?page=nu_loader");
+        }
+      }
     }
   }
+
 
   private function frontend(){
 
