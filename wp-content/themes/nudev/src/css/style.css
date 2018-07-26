@@ -1131,7 +1131,7 @@ div.wpforms-container-full .wpforms-form select {
   h4:before {
     width: 35px; } }
 
-@media only screen and (max-width: 1230px) {
+@media only screen and (max-width: 1375px) {
   footer {
     flex: none; }
     footer > div#sitefooter > div > ul {

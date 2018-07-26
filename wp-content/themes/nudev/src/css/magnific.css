@@ -528,3 +528,15 @@ img.mfp-img {
 .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
   opacity: 0;
 }
+
+@media only screen and (max-width: 800px){
+  .mfp-content {
+    width:90vw !important;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .mfp-content {
+    width:94vw !important;
+  }
+}
