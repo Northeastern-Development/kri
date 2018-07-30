@@ -819,7 +819,7 @@ main#locations {
     width: 48vw;
     margin: 0 auto;
     padding-top: 45px;
-    line-height: 2vw;
+    line-height: 4.8rem;
     padding-bottom: 15px; }
     .nu__hero-header h2 span {
       font-weight: 700; }
@@ -1368,6 +1368,11 @@ div.wpforms-container-full .wpforms-form select {
         -webkit-order: 11;
         margin: 0 0 0 0; } }
 
+@media only screen and (max-width: 959px) {
+  .nu__hero-header h2 {
+    font-size: 2rem;
+    line-height: 3.2rem; } }
+
 @media only screen and (max-width: 950px) {
   main#homepage > section#approach > div:nth-of-type(1) {
     width: 41vw !important; }
@@ -1390,9 +1395,7 @@ div.wpforms-container-full .wpforms-form select {
   .nu__hero-header {
     width: 75vw; }
     .nu__hero-header h2 {
-      width: 70vw;
-      font-size: 4vw;
-      line-height: 1.5em; }
+      width: 70vw; }
   .nu__col-right {
     padding-top: 0; }
   .nu__col-copy h4 {
@@ -1552,9 +1555,7 @@ div.wpforms-container-full .wpforms-form select {
   .nu__hero-header {
     width: 75vw; }
     .nu__hero-header h2 {
-      width: 70vw;
-      font-size: 5vw;
-      line-height: 1.5em; }
+      width: 70vw; }
   .nu__col-copy h4 {
     font-size: 1.6rem; }
     .nu__col-copy h4:before {
