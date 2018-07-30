@@ -23,7 +23,7 @@
 
 		</div>
 		<div class="nu__hero-header"><a name="contact"></a>
-			<h2><span class="nu__red-span">KRI</span> brings together faculty, industry and students to help solve important security, intelligence and resilience needs. Join the team.</h2>
+			<h2><span class="nu__red-span">KRI</span> is lead by academic and industry experts who know how to translate discoveries to the marketplace.</h2>
 		</div>
 
 		<section class="departmenthead">

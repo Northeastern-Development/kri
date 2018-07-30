@@ -9,7 +9,11 @@
  @import "modules/fonts";
 
 
-
+body.page-template-template-staff {
+  & h4 {
+    letter-spacing:inherit;
+  }
+}
 
 main#staff{
 
@@ -42,17 +46,21 @@ main#staff{
           display: none;
         }
       }
-      & > a{
+      & > div.kri__more-link {
         border-bottom: 1px solid #cc0000;
-        // padding: 0 0 4px 0;
-        &:before{
-          display: block;
-          float: left;
-          font-family: 'Material Icons';
-          content: '\e5c8';
-          padding: 4px 10px 0 0;
-          border-bottom: 1px solid #cc0000;
-          line-height: 2.2rem;
+        float:left;
+        & > a{
+
+          // padding: 0 0 4px 0;
+          &:before{
+            display: block;
+            float: left;
+            font-family: 'Material Icons';
+            content: '\e5c8';
+            padding: 4px 10px 0 0;
+            // border-bottom: 1px solid #cc0000;
+            line-height: 2.2rem;
+          }
         }
       }
       &:nth-of-type(2){
@@ -121,9 +129,12 @@ main#staff{
               margin: 10px 0 0 0;
             }
             & > h4{
-              font-size: 1.6rem;
-              line-height: 2.2rem;
-              font-weight: 300;
+              font-size: 1.8rem;
+              line-height: 3rem;
+              font-weight: 400;
+              // font-size: 1.6rem;
+              // line-height: 2.2rem;
+              // font-weight: 300;
               text-transform: none;
               text-align: left;
               margin: 0 0 0 0;
@@ -212,29 +223,33 @@ main#staff{
         &:before{
           display: none;
         }
-        & > a{
+        & div.kri__more-link {
           border-bottom: 1px solid #cc0000;
-          &.email:before,
-          &.phone:before{
-            width: auto;
-            background: none;
-            font-family: 'Material Icons';
-            padding: 0 10px 0 0;
-            margin: 0 0 0 0;
-            display: block;
-            float: left;
-            line-height: 3rem;
-            height: 26px;
-            border-bottom: 1px solid #cc0000;
-          }
-          &.email{
-            &:before{
-              content: '\e0be';
+          float:left;
+          & > a{
+
+            &.email:before,
+            &.phone:before{
+              width: auto;
+              background: none;
+              font-family: 'Material Icons';
+              padding: 0 10px 0 0;
+              margin: 0 0 0 0;
+              display: block;
+              float: left;
+              line-height: 3rem;
+              height: 26px;
+              // border-bottom: 1px solid #cc0000;
             }
-          }
-          &.phone{
-            &:before{
-              content: '\e551'
+            &.email{
+              &:before{
+                content: '\e0be';
+              }
+            }
+            &.phone{
+              &:before{
+                content: '\e551'
+              }
             }
           }
         }
