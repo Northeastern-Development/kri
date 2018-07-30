@@ -160,6 +160,8 @@ main#news section.newsarticle > div {
       width: 90vw; } }
 
 @media only screen and (max-width: 600px) {
+  .alignleft, .alignright, .aligncenter {
+    width: 100%; }
   main#news section.newslist > div > ul > li > div {
     width: 100%;
     float: none; }

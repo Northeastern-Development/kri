@@ -325,6 +325,10 @@ main#news{
 
 @media only screen and (max-width: 600px){
 
+  .alignleft, .alignright, .aligncenter {
+    width:100%;
+  }
+
   main#news{
 
   .pagination {
