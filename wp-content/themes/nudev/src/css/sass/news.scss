@@ -42,7 +42,17 @@ main#news{
             min-height: 300px;
             overflow: hidden;
             float: left;
+            & > h3 {
+              font-size: 2.4rem;
+              line-height: 3.2rem;
+              font-weight: 700;
+            }
             & > h4{
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 400;
+              text-transform: none;
+              text-align: left;
               &:before{
                 display: none;
               }
@@ -56,6 +66,20 @@ main#news{
               background-repeat: no-repeat !important;
               background-size: cover !important;
             }
+            & > div.kri__more-link {
+              border-bottom: 1px solid #cc0000;
+              float:left;
+              & a {
+                &:before {
+                  display: block;
+                  float: left;
+                  font-family: 'Material Icons';
+                  content: '\e5c8';
+                  padding: 4px 10px 0 0;
+                  line-height: 2.2rem;
+                }
+              }
+            }
           }
         }
       }
@@ -64,7 +88,8 @@ main#news{
 
   section.breadcrumbs{
     width: 59vw;
-    margin: 200px auto 0 auto;
+    margin: 200px auto 20px auto;
+    font-size:1.2rem;
   }
 
   section.newsarticle{
@@ -85,8 +110,11 @@ main#news{
         font-weight: 700;
       }
       & h2 {
-        line-height: 4rem;
+        // line-height: 4rem;
         margin-bottom:30px;
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+        font-weight: 700;
       }
       & p {
         & a {

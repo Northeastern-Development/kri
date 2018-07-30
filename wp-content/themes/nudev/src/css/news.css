@@ -60,7 +60,16 @@ main#news section.newslist > div {
         min-height: 300px;
         overflow: hidden;
         float: left; }
+        main#news section.newslist > div > ul > li > div > h3 {
+          font-size: 2.4rem;
+          line-height: 3.2rem;
+          font-weight: 700; }
         main#news section.newslist > div > ul > li > div > h4 {
+          font-size: 1.6rem;
+          line-height: 2.2rem;
+          font-weight: 400;
+          text-transform: none;
+          text-align: left;
           font-size: 1.2rem; }
           main#news section.newslist > div > ul > li > div > h4:before {
             display: none; }
@@ -71,10 +80,21 @@ main#news section.newslist > div {
           background-position: center center !important;
           background-repeat: no-repeat !important;
           background-size: cover !important; }
+        main#news section.newslist > div > ul > li > div > div.kri__more-link {
+          border-bottom: 1px solid #cc0000;
+          float: left; }
+          main#news section.newslist > div > ul > li > div > div.kri__more-link a:before {
+            display: block;
+            float: left;
+            font-family: 'Material Icons';
+            content: '\e5c8';
+            padding: 4px 10px 0 0;
+            line-height: 2.2rem; }
 
 main#news section.breadcrumbs {
   width: 59vw;
-  margin: 200px auto 0 auto; }
+  margin: 200px auto 20px auto;
+  font-size: 1.2rem; }
 
 main#news section.newsarticle > div {
   width: 59vw;
@@ -90,8 +110,10 @@ main#news section.newsarticle > div {
     font-size: 1.2rem;
     font-weight: 700; }
   main#news section.newsarticle > div h2 {
-    line-height: 4rem;
-    margin-bottom: 30px; }
+    margin-bottom: 30px;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    font-weight: 700; }
   main#news section.newsarticle > div p a span {
     font-family: 'Material Icons'; }
   main#news section.newsarticle > div blockquote {
