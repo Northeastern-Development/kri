@@ -106,13 +106,25 @@ main#staff{
         margin: ($gutter * 2) auto 0 auto;
         list-style: none;
         list-style-type: none;
+
+        display:flex;
+        flex-wrap: wrap;
         & > li{
           $width: (($content_width - ($gutter * ($columns - 1))) / $columns);
           width: $width;
-          height: auto;
-          float: left;
+          // height: auto;
+          // min-height:470px;
+          //border:1px solid red;
+          // height: (($content_width - ($gutter * ($columns - 22))) / $columns);
+          //float: left;
+          //margin: 0 $gutter $gutter 0;
+          //position: relative;
+
+          display: flex;
           margin: 0 $gutter $gutter 0;
-          position: relative;
+          //width: 100%;
+
+
           & > a{
             clear: both;
             &:hover{
@@ -332,7 +344,124 @@ main#staff{
         }
       }
     }
+    section.stafflist{
+
+      $columns: 4;
+
+      width: $wrapper-width;
+      margin: 0 auto 0 auto;
+      overflow: hidden;
+      padding: 0 0 ($gutter * 3) 0;
+      & > div{
+        overflow: hidden;
+        width: $content_width;
+        margin: 0 auto 0 auto;
+        padding: ($gutter * 2) 0 0 0;
+        text-align: center;
+        & > h2{
+          width: $content_width;
+          border-bottom: none;
+          margin: 0 auto 0 auto;
+          font-size: 3.4rem;
+          letter-spacing: 2px;
+          line-height: 4.8rem;
+        }
+        & > ul{
+          overflow: hidden;
+          width: $content_width;
+          margin: ($gutter * 2) auto 0 auto;
+          list-style: none;
+          list-style-type: none;
+
+          display:flex;
+          flex-wrap: wrap;
+          & > li{
+            $width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+            width: $width;
+            // height: auto;
+            // min-height:470px;
+            //border:1px solid red;
+            // height: (($content_width - ($gutter * ($columns - 22))) / $columns);
+            //float: left;
+            //margin: 0 $gutter $gutter 0;
+            //position: relative;
+
+            display: flex;
+            margin: 0 $gutter $gutter 0;
+            //width: 100%;
+
+
+            & > a{
+              clear: both;
+              &:hover{
+                color: rgba(0,0,0,1.0);
+                & > span{
+                  color: #cc0000;
+                }
+              }
+              & > h3{
+                font-size: 1.2rem;
+                line-height: 2.2rem;
+                font-weight: 700;
+                text-align: left;
+                margin: 10px 0 0 0;
+              }
+              & > h4{
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                font-weight: 400;
+                // font-size: 1.6rem;
+                // line-height: 2.2rem;
+                // font-weight: 300;
+                text-transform: none;
+                text-align: left;
+                margin: 0 0 0 0;
+                &:before{
+                  display: none;
+                }
+              }
+              & > span{
+                float: left;
+                font-size: 1.6rem;
+                line-height: 2.2rem;
+                font-weight: 300;
+                text-transform: none;
+                text-align: left;
+                font-family: "Lato", sans-serif, "Material Icons";
+                margin: 0 0 10px 0;
+                &:before{
+                  content: '\E5D4';
+                  padding: 5px 5px 0 5px;
+                  display: block;
+                  line-height: 1.6rem;
+                  float: left;
+                }
+              }
+              & > div{
+                width: $width;
+                height: $width;
+                background: rgba(0,0,0,1.0);
+                background-position: center center !important;
+                background-repeat: no-repeat !important;
+                background-size: cover !important;
+              }
+            }
+            &:nth-child(#{$columns}n+#{$columns}){
+              margin: 0 $gutter $gutter 0;
+            }
+            &:nth-child(4n+4){
+              margin: 0 0 $gutter 0;
+            }
+            &:nth-child(5n+5){
+              margin: 0 $gutter $gutter 0;
+            }
+
+          }
+        }
+      }
+    }
   }
+
 
 }
 
@@ -369,7 +498,7 @@ main#staff{
 
     section.stafflist{
 
-
+      $columns: 2;
 
 
       & > div{
@@ -406,9 +535,19 @@ main#staff{
             &:nth-child(#{$columns}n+#{$columns}){
               margin: 0 0 $gutter 0;
             }
-            &:nth-child(5n+5){
-              margin: 0 $gutter ($gutter * 3) auto;
-            }
+            // &:nth-child(2n+2){
+            //   margin: 0 0 $gutter 0;
+            // }
+            // &:nth-child(3n+3){
+            //   margin: 0 $gutter $gutter 0;
+            // }
+            // &:nth-child(4n+4){
+            //   margin: 0 $gutter $gutter 0;
+            // }
+            // &:nth-child(5n+5){
+            //   margin: 0 0 $gutter 0;
+            // }
+
           }
         }
       }
