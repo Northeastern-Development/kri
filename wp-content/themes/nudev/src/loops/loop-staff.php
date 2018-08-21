@@ -34,13 +34,13 @@
 
 			// this will loop through all of the records found and build out the staff for the selected department
 
-			for($i=0;$i<6;$i++){	// this loop is only for testing to get more items on screen, remove for real use
+			//for($i=0;$i<6;$i++){	// this loop is only for testing to get more items on screen, remove for real use
 
 				foreach($this->res as $r){
 					$return .= $this->buildRecord($r->post_name,get_fields($r->ID));
 				}
 
-			}
+		//}
 
 			unset($this->res,$r);
 
