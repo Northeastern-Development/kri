@@ -1,0 +1,321 @@
+/*
+ * Marketing
+ */
+
+
+ // Modules
+ @import "modules/variables";
+ @import "modules/mixins";
+ @import "modules/fonts";
+
+
+
+
+main#staff{
+
+  $columns: 5;
+
+
+  section.departmenthead{
+    width: 48vw;
+    margin: 30px auto 0 auto;
+    & > div{
+      width: 31vw;
+      float: left;
+      margin: 0 2vw 0 0;
+      & > h3{
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+      }
+      & > h4{
+        font-size: 2.0rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+        text-transform: none;
+        margin: 10px 0 10px 0;
+        &:before{
+          display: none;
+        }
+      }
+      & > a{
+        border-bottom: 1px solid #cc0000;
+        // padding: 0 0 4px 0;
+        &:before{
+          display: block;
+          float: left;
+          font-family: 'Material Icons';
+          content: '\e5c8';
+          padding: 4px 10px 0 0;
+          border-bottom: 1px solid #cc0000;
+          line-height: 2.2rem;
+        }
+      }
+      &:nth-of-type(2){
+        width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+        height: (($content_width - ($gutter * ($columns - 1))) / $columns);
+        margin: 0 0 0 0;
+        background: rgba(0,0,0,1.0);
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+    }
+  }
+
+
+
+  section.stafflist{
+
+
+
+    width: $wrapper-width;
+    margin: 0 auto 0 auto;
+    overflow: hidden;
+    padding: 0 0 ($gutter * 3) 0;
+    & > div{
+      overflow: hidden;
+      width: $content_width;
+      margin: 0 auto 0 auto;
+      padding: ($gutter * 2) 0 0 0;
+      text-align: center;
+      & > h2{
+        width: $content_width;
+        border-bottom: none;
+        margin: 0 auto 0 auto;
+        font-size: 3.4rem;
+        letter-spacing: 2px;
+        line-height: 4.8rem;
+      }
+      & > ul{
+        overflow: hidden;
+        width: $content_width;
+        margin: ($gutter * 2) auto 0 auto;
+        list-style: none;
+        list-style-type: none;
+        & > li{
+          $width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+          width: $width;
+          height: auto;
+          float: left;
+          margin: 0 $gutter $gutter 0;
+          position: relative;
+          & > a{
+            clear: both;
+            &:hover{
+              color: rgba(0,0,0,1.0);
+              & > span{
+                color: #cc0000;
+              }
+            }
+            & > h3{
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 700;
+              text-align: left;
+              margin: 10px 0 0 0;
+            }
+            & > h4{
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 300;
+              text-transform: none;
+              text-align: left;
+              margin: 0 0 0 0;
+              &:before{
+                display: none;
+              }
+            }
+            & > span{
+              float: left;
+              font-size: 1.6rem;
+              line-height: 2.2rem;
+              font-weight: 300;
+              text-transform: none;
+              text-align: left;
+              font-family: "Lato", sans-serif, "Material Icons";
+              margin: 0 0 10px 0;
+              &:before{
+                content: '\E5D4';
+                padding: 5px 5px 0 5px;
+                display: block;
+                line-height: 1.6rem;
+                float: left;
+              }
+            }
+            & > div{
+              width: $width;
+              height: $width;
+              background: rgba(0,0,0,1.0);
+              background-position: center center !important;
+              background-repeat: no-repeat !important;
+              background-size: cover !important;
+            }
+          }
+          &:nth-child(#{$columns}n+#{$columns}){
+            margin: 0 0 $gutter 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+#staffbio{
+  background: rgba(255,255,255,1.0);
+  margin: 10px 10vw 0 10vw;
+  padding-bottom: 0;
+  padding: $gutter 0 $gutter 0;
+
+  & > div.contact{
+    clear: both;
+    overflow: hidden;
+
+    & > div{
+      float: left;
+      width: 34vw;
+      margin: 0 $gutter 0 0;
+      & > h2{
+        font-size: 2.4rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+        margin: 10px 0 10px 0;
+      }
+      & > h3{
+        font-size: 2.0rem;
+        line-height: 3.2rem;
+        font-weight: 700;
+        text-transform: none;
+        margin: 0 0 10px 0;
+        &:before{
+          display: none;
+        }
+      }
+      & > h4{
+        font-size: 1.6rem;
+        line-height: 3rem;
+        font-weight: 300;
+        text-transform: none;
+        margin: 0 0 10px 0;
+        clear: both;
+        &:before{
+          display: none;
+        }
+        & > a{
+          border-bottom: 1px solid #cc0000;
+          &.email:before,
+          &.phone:before{
+            width: auto;
+            background: none;
+            font-family: 'Material Icons';
+            padding: 0 10px 0 0;
+            margin: 0 0 0 0;
+            display: block;
+            float: left;
+            line-height: 3rem;
+            height: 26px;
+            border-bottom: 1px solid #cc0000;
+          }
+          &.email{
+            &:before{
+              content: '\e0be';
+            }
+          }
+          &.phone{
+            &:before{
+              content: '\e551'
+            }
+          }
+        }
+      }
+      &:nth-of-type(2){
+        width: 15vw;
+        height: 15vw;
+        margin: 0 0 0 0;
+        background: rgba(0,0,0,1.0);
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+    }
+  }
+  & > div.about{
+    & > h3{
+      font-size: 2.0rem;
+      line-height: 3.2rem;
+      font-weight: 700;
+      margin: 30px 0 5px 0;
+    }
+  }
+
+}
+
+
+
+
+
+@media only screen and (max-width: 1200px){
+
+  main#staff{
+
+    section.stafflist{
+
+      & > div{
+        & > ul{
+          margin: ($gutter * 2) auto 0 auto;
+          & > li{
+            width: 50vw;
+            float: none;
+            margin: 0 auto ($gutter * 3) auto;
+            &:nth-child(2n+2){
+              margin: 0 auto ($gutter * 3) auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: 800px){
+
+  main#staff{
+
+    section.stafflist{
+      & > div{
+        & > ul{
+          & > li{
+            width: 70vw;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+@media only screen and (max-width: 600px){
+
+  main#staff{
+    section.stafflist{
+      width: 100%;
+      & > div{
+        width: 100%;
+        & > ul{
+          width: 100%;
+          & > li{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+}
