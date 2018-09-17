@@ -175,7 +175,6 @@ header {
   height: 110px;
   left: 0;
   position: fixed;
-  top: 40px;
   width: 100vw;
   z-index: 1000; }
   header > div#header {
@@ -479,7 +478,7 @@ main {
   min-height: calc(100vh - 200px); }
 
 main#homepage {
-  margin: 110px 0 0 0;
+  margin: 0 0 0 0;
   padding-bottom: 0; }
   main#homepage .nu__full-hero {
     height: 480px;
@@ -599,6 +598,24 @@ main#homepage {
             margin: 0 0 0 0; }
           main#homepage > section#approach > div:nth-of-type(2) > p > span {
             color: #cd0000; }
+        main#homepage > section#approach > div:nth-of-type(2) > a {
+          color: black;
+          font-size: 1.6rem;
+          font-weight: 700; }
+          main#homepage > section#approach > div:nth-of-type(2) > a.download {
+            border: solid black 1px;
+            background: white;
+            height: 50px;
+            line-height: 50px;
+            display: block;
+            color: black;
+            width: 180px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 1px; }
+          main#homepage > section#approach > div:nth-of-type(2) > a:not(.download):hover {
+            color: red;
+            text-decoration: underline; }
         @media (min-width: 700px) {
           main#homepage > section#approach > div:nth-of-type(2) p {
             font-size: calc(1.125rem + ((1vw - 7px) * 0.75));
@@ -1785,7 +1802,7 @@ div#wpfront-scroll-top-container {
 
 /* Styles for the main content */
 main {
-  margin: 110px 0 1vw 0;
+  margin: 0 0 1vw 0;
   padding-bottom: 50px; }
   main > section {
     position: relative;

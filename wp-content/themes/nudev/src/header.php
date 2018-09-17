@@ -40,6 +40,7 @@
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/favicon/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
+		<link  rel="stylesheet" id="global-font-css"  href="https://www.northeastern.edu/nuglobalutils/common/css/material-icons.css"/>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/font-awesome.min.css">
 
 
@@ -50,7 +51,7 @@
 	</head>
 	<body <?php body_class(); ?>>
 
-		<p class="testp" style="position:fixed;background:#000;color:#fff;top:100px;left:0;font-weight:bold;font-size:20px;z-index:99999999;"></p>
+		<!-- <p class="testp" style="position:fixed;background:#000;color:#fff;top:100px;left:0;font-weight:bold;font-size:20px;z-index:99999999;"></p> -->
 
 		<!-- wrapper -->
 		<div class="wrapper">

@@ -108,6 +108,7 @@ class NUModuleLoader{
         }
       }
     }
+
   }
 
 
@@ -136,7 +137,7 @@ class NUModuleLoader{
   public function build_footer(){
 
     if(null !== get_option('global_footer') && get_option('global_footer') == 'on'){
-      echo '<div id="nu__global-footer">'.$this->getRemoteContent('/resources/includes/?r=footer').'</div>';
+      echo '<div id="nu__global-footer">'.$this->getRemoteContent('/resources/includes/?r=footer&cache=no').'</div>';
     }
 
   }
@@ -155,7 +156,21 @@ class NUModuleLoader{
   public function build_header(){
 
     if(null !== get_option('global_header') && get_option('global_header') == 'on'){
-      echo '<div id="nu__globalheader">'.$this->getRemoteContent('/resources/components/?return=main-menu').'</div>';
+
+      $return = '<div id="nu__globalheader">';
+
+      // are there any alerts that we need to show?
+      // $return .= $this->getRemoteContent('/resources/components/?return=alerts&cache=no');
+      $return .= wp_remote_get('http://newnu.local/resources/components/?return=alerts&cache=no')['body'];
+
+      // grab the content for the main menu
+      $return .= $this->getRemoteContent('/resources/components/?return=main-menu&cache=no');
+
+      $return .= '</div>';
+
+      echo $return;
+
+      unset($return);
     }
 
   }
@@ -180,13 +195,15 @@ class NUModuleLoader{
 
   // add in the JS for the global header
   function nu_scripts(){
-   echo '<script src="'.$this->resourcesUrl[0].'/nuglobalutils/common/js/navigation-min.js"></script>';
+   // echo '<script src="'.$this->resourcesUrl[0].'/nuglobalutils/common/js/navigation.js"></script>';
+   echo '<script src="http://sandbox.local/globalheaderfooter/server/js/navigation.js"></script>';
   }
 
 
   // add in the CSS for the header
   function nu_headerstyles(){
-    echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/utilitynav.css"  />';
+    // echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/utilitynav.css"  />';
+    echo '<link  rel="stylesheet" id="global-header-style-css"  href="http://sandbox.local/globalheaderfooter/server/css/utilitynav.css" />';
   }
 
 

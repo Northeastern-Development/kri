@@ -30,17 +30,17 @@
 			unset($args,$this->dept);
 		}
 
-		public function buildReturn():string{
+		public function buildReturn(){
 
 			// this will loop through all of the records found and build out the staff for the selected department
 
-			for($i=0;$i<6;$i++){	// this loop is only for testing to get more items on screen, remove for real use
+		//	for($i=0;$i<6;$i++){	// this loop is only for testing to get more items on screen, remove for real use
 
 				foreach($this->res as $r){
 					$return .= $this->buildRecord($r->post_name,get_fields($r->ID));
 				}
 
-			}
+			//}
 
 			unset($this->res,$r);
 
@@ -48,7 +48,7 @@
 
 		}
 
-		public function buildRecord($a='',$b=''):string{
+		public function buildRecord($a='',$b=''){
 
 			$guide = '<li><a href="%s" title="Click to view profile" class="js__bio"><div style="background: url(%s);"></div><h3>%s</h3><h4>%s</h4><span>View profile</span></a></li>';
 

@@ -28,9 +28,9 @@
       unset($args,$res,$this->dept);
     }
 
-    public function buildReturn():string{
+    public function buildReturn(){
 
-      $guide = '<div><h3>%s%s</h3><h4>%s</h4><p>%s</p><a href="/faculty-and-staff/%s" title="Click here to read more" class="js__bio">Read More</a></div><div style="background: url(%s);"></div>';
+      $guide = '<div><h3>%s%s</h3><h4>%s</h4><p>%s</p><div class="kri__more-link"><a href="'.site_url().'/faculty-and-staff/%s" title="Click here to read more" class="js__bio">Read More</a></div></div><div style="background: url(%s);"></div>';
 
       $return = sprintf(
         $guide

@@ -4820,6 +4820,16 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/acf.php",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/css\/acf-dark.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/css\/acf-dark-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/css\/acf-field-group.css": {
 		"aP": 1,
 		"bl": 0,
@@ -4910,6 +4920,17 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/font\/README.txt",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/acf-logo.png": {
+		"ft": 32768,
+		"iS": 3478,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/acf-logo.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/spinner.gif": {
 		"ft": 4194304,
 		"iS": 5240,
@@ -4925,28 +4946,6 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/spinner@2x.gif",
 		"oF": 0,
 		"opt": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/sprite.png": {
-		"ft": 32768,
-		"iS": 3568,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/sprite.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/sprite@2x.png": {
-		"ft": 32768,
-		"iS": 6534,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/images\/sprite@2x.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/assets\/inc\/datepicker\/images\/ui-bg_highlight-soft_0_ffffff_1x100.png": {
 		"ft": 32768,
@@ -5233,32 +5232,18 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/admin-tools.php",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/admin-upgrade.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/admin-upgrade.php",
+		"oF": 0
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/admin.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/admin.php",
-		"oF": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/install-network.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/install-network.php",
-		"oF": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/install-updates.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/install-updates.php",
-		"oF": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/install.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/install.php",
 		"oF": 0
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/settings-addons.php": {
@@ -5331,6 +5316,20 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/field-group-options.php",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-admin-page-upgrade-network.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-admin-page-upgrade-network.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-admin-page-upgrade.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-admin-page-upgrade.php",
+		"oF": 0
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-admin-tools.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -5352,25 +5351,11 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-location-rule.php",
 		"oF": 0
 		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/install-network.php": {
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-notice-upgrade.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/install-network.php",
-		"oF": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/install-notice.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/install-notice.php",
-		"oF": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/install.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/install.php",
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/html-notice-upgrade.php",
 		"oF": 0
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/settings-addons.php": {
@@ -5387,11 +5372,46 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/admin\/views\/settings-info.php",
 		"oF": 0
 		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax.php": {
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-check-screen.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax.php",
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-check-screen.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-query-terms.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-query-terms.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-query.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-query.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-upgrade.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-upgrade.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-user-setting.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax-user-setting.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/ajax\/class-acf-ajax.php",
 		"oF": 0
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/api\/api-field-group.php": {
@@ -5429,11 +5449,25 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/api\/api-template.php",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/api\/api-term.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/api\/api-term.php",
+		"oF": 0
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/api\/api-value.php": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/api\/api-value.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/assets.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/assets.php",
 		"oF": 0
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/cache.php": {
@@ -5702,6 +5736,13 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/fields\/class-acf-field.php",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/form.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/form.php",
+		"oF": 0
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/forms\/form-attachment.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -5770,13 +5811,6 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/forms\/form-widget.php",
-		"oF": 0
-		},
-	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/input.php": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/input.php",
 		"oF": 0
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/json.php": {
@@ -5989,6 +6023,13 @@
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/updates.php",
 		"oF": 0
 		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/upgrades.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/upgrades.php",
+		"oF": 0
+		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/includes\/validation.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -6169,6 +6210,20 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/lang\/acf-he_IL.po",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/lang\/acf-hr_HR.mo": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/lang\/acf-hr_HR.mo",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/advanced-custom-fields-pro\/lang\/acf-hr_HR.po": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/advanced-custom-fields-pro\/lang\/acf-hr_HR.po",
 		"oF": 0
 		},
 	"\/wp-content\/plugins\/advanced-custom-fields-pro\/lang\/acf-hu_HU.mo": {
@@ -7644,6 +7699,28 @@
 		"opt": 0,
 		"oT": 1,
 		"q": 100
+		},
+	"\/wp-content\/plugins\/nu-loader\/components\/footer.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/nu-loader\/components\/footer.php",
+		"oF": 0
+		},
+	"\/wp-content\/plugins\/nu-loader\/components\/library.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "\/wp-content\/plugins\/nu-loader\/components\/library-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"\/wp-content\/plugins\/nu-loader\/interfaces\/settings.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/plugins\/nu-loader\/interfaces\/settings.php",
+		"oF": 0
 		},
 	"\/wp-content\/plugins\/nu-loader\/nu-loader.php": {
 		"cB": 0,
@@ -23822,6 +23899,16 @@
 		"oF": 0,
 		"oS": 3
 		},
+	"\/wp-content\/themes\/nudev\/src\/css\/news.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/news-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/wp-content\/themes\/nudev\/src\/css\/sass\/__old\/category.css": {
 		"aP": 1,
 		"bl": 0,
@@ -23976,6 +24063,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/wp-content\/themes\/nudev\/src\/css\/sass\/news.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/news.css",
+		"oF": 2,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/wp-content\/themes\/nudev\/src\/css\/sass\/pages\/convening.scss": {
 		"aP": 0,
 		"bl": 0,
@@ -24011,6 +24111,19 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/sass\/pages\/homepage.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/wp-content\/themes\/nudev\/src\/css\/sass\/pages\/homepage.scss.BAK.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/sass\/pages\/homepage.scss.BAK.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -24184,7 +24297,30 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/wp-content\/themes\/nudev\/src\/css\/sass\/staff.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/sass\/staff-min.css",
+		"oF": 0,
+		"oS": 3
+		},
 	"\/wp-content\/themes\/nudev\/src\/css\/sass\/staff.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/css\/staff.css",
+		"oF": 2,
+		"oS": 0,
+		"uL": 1
+		},
+	"\/wp-content\/themes\/nudev\/src\/css\/sass\/staff.scss.BAK.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -25127,6 +25263,13 @@
 		"oAP": "\/wp-content\/themes\/nudev\/src\/loops\/loop-careers.php",
 		"oF": 0
 		},
+	"\/wp-content\/themes\/nudev\/src\/loops\/loop-news-archive.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/loops\/loop-news-archive.php",
+		"oF": 0
+		},
 	"\/wp-content\/themes\/nudev\/src\/loops\/loop-staff-departmenthead.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -25293,6 +25436,20 @@
 		"ft": 8192,
 		"oA": 0,
 		"oAP": "\/wp-content\/themes\/nudev\/src\/templates\/template-location.php",
+		"oF": 0
+		},
+	"\/wp-content\/themes\/nudev\/src\/templates\/template-news-archive.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/templates\/template-news-archive.php",
+		"oF": 0
+		},
+	"\/wp-content\/themes\/nudev\/src\/templates\/template-news-item.php": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/wp-content\/themes\/nudev\/src\/templates\/template-news-item.php",
 		"oF": 0
 		},
 	"\/wp-content\/themes\/nudev\/src\/templates\/template-staff-bio.php": {

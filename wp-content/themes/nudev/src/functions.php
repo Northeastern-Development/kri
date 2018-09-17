@@ -61,10 +61,29 @@ if (function_exists('add_theme_support'))
 \*------------------------------------*/
 
 
+
+// we need to prevent the canonical redirect for theh homepage?
+// function disable_canonical_redirect_for_front_page( $redirect ) {
+//   if ( is_page() && $front_page = get_option( 'page_on_front' ) ) {
+//     if ( is_page( $front_page ) )
+//       $redirect = false;
+//   }
+//
+//   return $redirect;
+// }
+// add_filter( 'redirect_canonical', 'disable_canonical_redirect_for_front_page' );
+
+
+
+
+
 // this file will house all custom redirects and query tags that we need to create
 
 // add custom query tags here
 function myplugin_rewrite_tag() {
+
+  // add_rewrite_tag( '%seantest%', '([^&]+)' );	// this is for the full bio details
+
   add_rewrite_tag( '%show-bio%', '([^&]+)' );	// this is for the full bio details
   add_rewrite_tag( '%show-article%', '([^&]+)' );	// this is for the news article details
 }
@@ -72,8 +91,11 @@ add_action('init', 'myplugin_rewrite_tag', 10, 0);
 
 // add custom rewrite rules here
 function custom_rewrite_rule() {
-    add_rewrite_rule('^faculty-and-staff/([^/]*)?','index.php?page_id=120&show-bio=$matches[1]','top');  // full bio details
-    add_rewrite_rule('^news/article/([^/]*)?','index.php?page_id=157&show-article=$matches[1]','top');  // full news article details
+
+  // add_rewrite_rule('^([^/]*)?','index.php?page_id=5&seantest=$matches[1]','top');  // testing on the HP
+
+  add_rewrite_rule('^faculty-and-staff/([^/]*)?','index.php?page_id=238&show-bio=$matches[1]','top');  // full bio details
+  add_rewrite_rule('^news/article/([^/]*)?','index.php?page_id=157&show-article=$matches[1]','top');  // full news article details
 }
 add_action('init', 'custom_rewrite_rule', 10, 0);
 

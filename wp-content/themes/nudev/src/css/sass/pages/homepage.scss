@@ -10,7 +10,8 @@ main {
 
 main#homepage{
 
-  margin: $header-height 0 0 0;
+  margin: 0 0 0 0;
+
   padding-bottom:0;
 
   // background: red;
@@ -186,6 +187,27 @@ main#homepage{
             }
             & > span{
               color: rgba(205,0,0,1.0);
+            }
+          }
+          & > a{
+            color: rgba(0,0,0,1.0);
+            font-size:1.6rem;
+            font-weight:700;
+            &.download{
+              border: solid rgba(0,0,0,1.0) 1px;
+              background: rgba(255,255,255,1.0);
+              height: $navigation-height;
+              line-height: $navigation-height;
+              display: block;
+              color: rgba(0,0,0,1.0);
+              width: 180px;
+              text-transform: uppercase;
+              text-align: center;
+              letter-spacing: 1px;
+            }
+            &:not(.download):hover{
+              color: red;
+              text-decoration: underline;
             }
           }
           /* 18px @ 700px increasing to 24px @ 1500px */
