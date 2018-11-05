@@ -37,6 +37,7 @@ header {
   background: $black;
   height: $header-height;
   left: 0;
+  top: 40px;
   position: fixed;
   // top: 40px;
   width: 100vw;
@@ -56,7 +57,7 @@ header {
       vertical-align: middle;
       & a {
         & svg{
-          
+
           max-width:300px;
         }
         & img {

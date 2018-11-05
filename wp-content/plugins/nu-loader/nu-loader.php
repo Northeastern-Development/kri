@@ -17,10 +17,18 @@ class NUModuleLoader{
 
   var $resourcesUrl
       ,$brandLibrary
-      ,$activeComponentSource;
+      ,$activeComponentSource
+      ,$debugMode
+      ,$debugUrl;
 
   // initialize
   function __construct(){
+
+    // echo 'THIS PAGE: '.$_GET['page'];
+    // print_r(vardump);
+    // var_dump($_GET);
+    $this->debugMode = false;
+    $this->debugUrl = 'http://sandbox.local/globalheaderfooter';
 
     // let's read in the remote config JSON file
     $this->brandLibrary = json_decode(wp_remote_get('https://brand.northeastern.edu/global/components/config/library.json')['body']);
@@ -145,7 +153,12 @@ class NUModuleLoader{
 
   // add the footer styles to the header
   function nu_footerstyles(){
-    echo '<link  rel="stylesheet" id="global-footer-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/footer.css" /> ';
+    // echo 'DEBUG MODE: '.$this->debugMode;
+    if(!$this->debugMode){  // we are not in debug mode
+      echo '<link  rel="stylesheet" id="global-footer-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/footer.css" /> ';
+    }else{  // we are in debug mode
+      echo '<link  rel="stylesheet" id="global-footer-style-css"  href="'.$this->debugUrl.'/server/css/footer.css" /> ';
+    }
   }
 
 
@@ -160,8 +173,11 @@ class NUModuleLoader{
       $return = '<div id="nu__globalheader">';
 
       // are there any alerts that we need to show?
-      // $return .= $this->getRemoteContent('/resources/components/?return=alerts&cache=no');
-      $return .= wp_remote_get('http://newnu.local/resources/components/?return=alerts&cache=no')['body'];
+      if(!$this->debugMode){
+        $return .= $this->getRemoteContent('/resources/components/?return=alerts&cache=no');
+      }else{
+        $return .= wp_remote_get('http://newnu.local/resources/components/?return=alerts&cache=no')['body'];
+      }
 
       // grab the content for the main menu
       $return .= $this->getRemoteContent('/resources/components/?return=main-menu&cache=no');
@@ -180,9 +196,17 @@ class NUModuleLoader{
 
 
   // this function performs the actual remote content request and returns only the body value
-  private function getRemoteContent($a=''):string{
-    $return = wp_remote_get($this->resourcesUrl[0].$a);
-    if(!is_wp_error($return['body'])){
+  private function getRemoteContent($a=''){
+    if(!$this->debugMode){  // we are not in debug mode
+
+      // echo $this->resourcesUrl[0].$a;
+
+      $return = wp_remote_get($this->resourcesUrl[0].$a);
+      // print_r($return);
+    }else{  // we are in debug mode
+      $return = wp_remote_get('http://newnu.local/'.$a);
+    }
+    if(!is_wp_error($return)){
       return $return['body'];
     }else{
       return 'ERROR: the remote content could not be returned.';
@@ -195,21 +219,31 @@ class NUModuleLoader{
 
   // add in the JS for the global header
   function nu_scripts(){
-   // echo '<script src="'.$this->resourcesUrl[0].'/nuglobalutils/common/js/navigation.js"></script>';
-   echo '<script src="http://sandbox.local/globalheaderfooter/server/js/navigation.js"></script>';
+    if(!$this->debugMode){  // we are not in debug mode
+      echo '<script src="'.$this->resourcesUrl[0].'/nuglobalutils/common/js/navigation.js"></script>';
+    }else{  // we are in debug mode
+      echo '<script src="'.$this->debugUrl.'/server/js/navigation.js"></script>';
+    }
   }
 
 
   // add in the CSS for the header
   function nu_headerstyles(){
-    // echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/utilitynav.css"  />';
-    echo '<link  rel="stylesheet" id="global-header-style-css"  href="http://sandbox.local/globalheaderfooter/server/css/utilitynav.css" />';
+    if(!$this->debugMode){  // we are not in debug mode
+      echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/utilitynav.css"  />';
+    }else{  // we are in debug mode
+      echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->debugUrl.'/server/css/utilitynav.css" />';
+    }
   }
 
 
   // add in the material icons CSS
   function nu_materialicons(){
-    echo '<link  rel="stylesheet" id="global-font-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/material-icons.css"/>';
+    if(!$debugMode){  // we are not in debug mode
+      echo '<link  rel="stylesheet" id="global-font-css"  href="'.$this->resourcesUrl[0].'/nuglobalutils/common/css/material-icons.css"/>';
+    }else{  // we are in debug mode
+      echo '<link  rel="stylesheet" id="global-header-style-css"  href="'.$this->debugUrl.'/server/css/material-icons.css" />';
+    }
   }
 
 }

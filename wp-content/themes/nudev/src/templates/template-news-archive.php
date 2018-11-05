@@ -20,7 +20,7 @@
 
 		<section class="newslist">
 			<div>
-				<h2>More Stories</h2>
+				<!-- <h2>More Stories</h2> -->
 				<ul>
 					<?php include(locate_template('loops/loop-news-archive.php')); ?>
 				</ul>

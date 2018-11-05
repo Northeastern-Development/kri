@@ -34,9 +34,9 @@
 			<div>
 				<h2><?=$res->post_title?></h2>
 				<div class="img" style="background-image: url(<?=$fields['hero_image']['url']?>)"></div>
-				<p><?=$fields['hero_image_caption']?></p>
+				<p class="nu__caption"><?=$fields['hero_image_caption']?></p>
 				<?=$fields['full_description']?>
-				<p>Contact author <a href="<?=$fields['author_link']?>" title="Contact the author [This will open in a new tab/window]" target="_blank"><?=$fields['author_name']?></a></p>
+				<p>Contact author <a href="<?=$fields['author_link']?>" title="Contact the author [This will open in a new tab/window]" target="_blank"><?=$fields['author_name']?> <span>&#xe89e;</span></a></p>
 			</div>
 		</section>
 

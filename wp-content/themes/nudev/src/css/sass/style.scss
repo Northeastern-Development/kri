@@ -211,6 +211,7 @@ div#wpfront-scroll-top-container{
 main{
   margin: 0 0 $gutter 0;
   padding-bottom:50px;
+  // margin-top: 125px;
   & > section{
     position: relative;
     margin: nth($wrapper-margins, 1) nth($wrapper-margins, 2) nth($wrapper-margins, 3) nth($wrapper-margins, 4);

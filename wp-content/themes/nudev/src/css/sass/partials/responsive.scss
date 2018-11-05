@@ -376,7 +376,7 @@
 }
 
 
-@media only screen and (max-width: 1230px) {
+@media only screen and (max-width: 1375px) {
 footer{
  flex: none;
  & > div#sitefooter{
@@ -789,6 +789,19 @@ footer{
   }
 }
 
+@media only screen and (max-width: 959px) {
+  .nu__hero-header {
+    //width:75vw;
+    & h2 {
+      //width:70vw;
+      // font-size:4vw;
+      // line-height:1.5em;
+      font-size: 2rem;
+      line-height:3.2rem;
+    }
+  }
+}
+
 
 @media only screen and (max-width: 950px) {
 
@@ -840,8 +853,8 @@ main#homepage > section#approach > div:nth-of-type(2) {
     width:75vw;
     & h2 {
       width:70vw;
-      font-size:4vw;
-      line-height:1.5em;
+      // font-size:4vw;
+      // line-height:1.5em;
     }
   }
 
@@ -1149,8 +1162,8 @@ footer{
     width:75vw;
     & h2 {
       width:70vw;
-      font-size:5vw;
-      line-height:1.5em;
+      // font-size:5vw;
+      // line-height:1.5em;
     }
   }
 

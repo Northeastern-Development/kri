@@ -14,7 +14,10 @@ body.page-template-template-staff {
     letter-spacing:inherit;
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev/master
 
 main#staff{
 
@@ -48,7 +51,10 @@ main#staff{
         }
       }
       & > div.kri__more-link {
+<<<<<<< HEAD
         
+=======
+>>>>>>> dev/master
         border-bottom: 1px solid #cc0000;
         float:left;
         & > a{
@@ -307,9 +313,15 @@ main#staff{
         width: 48vw;
         float: none;
         margin: 0 auto;
+<<<<<<< HEAD
 
         order: 2;
 
+=======
+
+        order: 2;
+
+>>>>>>> dev/master
         & > h3{
           font-size: 2.4rem;
           line-height: 3.2rem;
@@ -453,6 +465,7 @@ main#staff{
             }
             &:nth-child(4n+4){
               margin: 0 0 $gutter 0;
+<<<<<<< HEAD
             }
             &:nth-child(5n+5){
               margin: 0 $gutter $gutter 0;
@@ -465,6 +478,135 @@ main#staff{
   }
 
 
+}
+
+@media only screen and (max-width: 1000px){
+  main#staff{
+
+    $columns: 3;
+
+
+    section.departmenthead{
+      width: 71vw;
+      & > div{
+        width: 71vw;
+        & > h3{
+
+        }
+        & > h4{
+
+        }
+        & > a{
+
+        }
+        &:nth-of-type(2){
+          width: 71vw;
+          height:57vw;
+          // width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+          // height: (($content_width - ($gutter * ($columns - 1))) / $columns);
+
+        }
+      }
+    }
+
+
+
+    section.stafflist{
+
+      $columns: 2;
+
+
+      & > div{
+
+        & > h2{
+
+        }
+        & > ul{
+
+          & > li{
+            $width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+            width: $width;
+            height: auto;
+
+            margin: 0 $gutter $gutter 0;
+
+            & > a{
+
+              & > h3{
+
+              }
+              & > h4{
+
+              }
+              & > span{
+
+              }
+              & > div{
+                width: $width;
+                height: $width;
+
+              }
+            }
+            &:nth-child(#{$columns}n+#{$columns}){
+              margin: 0 0 $gutter 0;
+            }
+            // &:nth-child(2n+2){
+            //   margin: 0 0 $gutter 0;
+            // }
+            // &:nth-child(3n+3){
+            //   margin: 0 $gutter $gutter 0;
+            // }
+            // &:nth-child(4n+4){
+            //   margin: 0 $gutter $gutter 0;
+            // }
+            // &:nth-child(5n+5){
+            //   margin: 0 0 $gutter 0;
+            // }
+=======
+            }
+            &:nth-child(5n+5){
+              margin: 0 $gutter $gutter 0;
+            }
+>>>>>>> dev/master
+
+          }
+        }
+      }
+    }
+  }
+
+
+<<<<<<< HEAD
+}
+
+@media only screen and (max-width: 990px){
+  main#staff{
+
+    section.departmenthead{
+      width:90vw;
+      & > div{
+        width: 90vw;
+        & > h3{
+
+        }
+        & > h4{
+
+        }
+        & > a{
+
+        }
+        &:nth-of-type(2){
+          width: 90vw;
+          height:71vw;
+          // width: (($content_width - ($gutter * ($columns - 1))) / $columns);
+          // height: (($content_width - ($gutter * ($columns - 1))) / $columns);
+
+        }
+      }
+    }
+  }
+=======
+>>>>>>> dev/master
 }
 
 @media only screen and (max-width: 1000px){
@@ -586,6 +728,9 @@ main#staff{
     }
   }
 }
+
+
+
 
 
 

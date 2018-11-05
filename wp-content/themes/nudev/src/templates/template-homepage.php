@@ -22,6 +22,7 @@
 				<p><span class="nu__red-span nu__bold-span">Lower costs</span> by leveraging  R1 university <span class="nu__red-span nu__bold-span">intellectual capital</span> and technologies.</p>
 				<p>Safeguard your <span class="nu__red-span nu__bold-span">proprietary information</span> in our <span class="nu__red-span nu__bold-span">secure environment</span>.</p>
 				<p>Benefit from our <span class="nu__red-span nu__bold-span">flexible IP policies</span>.</p>
+				<a href="//www.northeastern.edu/kostas/wp-content/uploads/kri_brochure.pdf" title="Click here to download our brochure" class="download hvr-shutter-out-horizontal" target="_blank">&#xf019; Brochure</a>
 			</div>
 		</section>
 
